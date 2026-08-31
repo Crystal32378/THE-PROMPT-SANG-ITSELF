@@ -16,7 +16,7 @@ By Crystal · 2026
 
 ## Listen
 
-▶ Audio — forthcoming
+▶ [Listen on YouTube](https://youtu.be/hBaoc9NjStc)
 
 ## Read
 
