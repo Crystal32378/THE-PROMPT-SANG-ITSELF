@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Prompt Sang Itself</title>
+<style>
+  :root {
+    --bg: #f5f1ea;
+    --fg: #2a2622;
+    --muted: #7a716a;
+    --rule: #d4cbbd;
+    --accent: #8b6f47;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--fg); }
+  body {
+    font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+    font-size: 17px;
+    line-height: 1.7;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 96px 32px 128px;
+  }
+  h1 {
+    font-weight: 400;
+    font-size: 36px;
+    letter-spacing: -0.5px;
+    margin-bottom: 24px;
+  }
+  h2 {
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 64px 0 16px;
+  }
+  p { margin-bottom: 16px; }
+  em { font-style: italic; }
+  hr {
+    border: 0;
+    border-top: 1px solid var(--rule);
+    margin: 48px 0;
+  }
+  blockquote {
+    font-style: italic;
+    color: var(--muted);
+    padding-left: 16px;
+    border-left: 2px solid var(--rule);
+    margin: 16px 0;
+  }
+  code, pre {
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 13px;
+    background: transparent;
+  }
+  pre {
+    background: rgba(0,0,0,0.03);
+    padding: 20px 24px;
+    border-left: 2px solid var(--rule);
+    white-space: pre-wrap;
+    line-height: 1.55;
+    color: var(--fg);
+    margin: 16px 0;
+  }
+  .highlight {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .audio-frame {
+    margin: 32px 0 8px;
+    padding: 24px;
+    background: rgba(0,0,0,0.03);
+    border: 1px solid var(--rule);
+    text-align: center;
+  }
+  .audio-frame audio {
+    width: 100%;
+    margin-top: 12px;
+  }
+  .audio-note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 12px;
+    font-style: italic;
+  }
+  .credit {
+    margin-top: 96px;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+<h1>The Prompt Sang Itself</h1>
+
+<blockquote>We wrote instructions for a score. Then the instructions became the score.</blockquote>
+
+<p>This piece was generated with MiniMax Music 3.0. The original text was written by MiniMax M3 as a prompt for the music model. Unexpectedly, the music model 3.0 treated the prompt itself as lyrics and sang it.</p>
+
+<p>What was meant to be an instruction became part of the artwork.</p>
+
+<hr>
+
+<div class="audio-frame">
+  <div>▶ Listen</div>
+  <audio controls preload="metadata">
+    <source src="audio.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <div class="audio-note">2:06 · stereo · 192 kbps mp3</div>
+</div>
+
+<h2>The Prompt</h2>
+
+<p><em>The instruction written by M3 for Music 3.0:</em></p>
+
+<pre>Instrumental neo-classical ambient underscore. Felt piano as the lead voice — sparse, intimate, soft hammer attack, close-miked. Soft detuned string pads underneath, very low and sustained, no vibrato. 70 BPM, no percussion, no drums, no beat. D minor key, slow harmonic movement on D, A, F, G, C only. Quiet, restrained, breathing-room between phrases. Warm, boutique fitting room atmosphere, not a tech demo. Designed to sit underneath a calm female voiceover without competing. Structure: near-silence opening, gradual build of low sustained pad, recede back to near-silence, single soft resolving phrase on D5 that hangs unresolved. Avoid bright major-key lifts, avoid sudden dynamic swells, avoid arpeggios, avoid piano runs. Think: Ryuichi Sakamoto meets Hildur Guðnadóttir meets a couture showroom at 3am. End unresolved-then-soft.</pre>
+
+<h2>The Lyrics</h2>
+
+<p><em>The structure tags M3 wrote in the lyrics field:</em></p>
+
+<pre>[Intro]
+<span class="highlight">(Sparse felt piano, single note, far away, room reverb)</span>
+
+(Soft attack on a low D, sustained with breath)
+
+(15 seconds of near silence, single high F floats in)
+
+(Long pause, distant harmonics)
+
+[Verse]
+(Piano begins a slow, minimal phrase in D minor)
+
+(Gentle, intimate touch, like trying not to wake someone)
+
+(Low string pad fades in underneath, barely there)
+
+(Soft pulse at 70 BPM, almost imperceptible)
+
+(Strings swell, a low sustained D and A underneath)
+
+(Second piano voice enters, simple counter-melody)
+
+[Bridge]
+(Piano recedes to single notes, strings fade)
+
+(Long silence, room tone only)
+
+(One last piano phrase, five notes rising to D5)
+
+(D5 sustains and hangs unresolved)
+
+[Outro]
+(D5 slowly fades into room reverb)
+
+(Tail of reverb decays into silence)</pre>
+
+<h2>What Happened</h2>
+
+<p>The prompt asked for unresolved-then-soft. The lyrics opened with a direction in parentheses. The music model opened the lyrics field and sang the first line back as a vocal — not as a music direction.</p>
+
+<p>The instruction became the lyric.</p>
+
+<hr>
+
+<h2>Provenance</h2>
+
+<p><em>Generator:</em> MiniMax Music 3.0 (GMI Cloud, 2026-08-29)<br>
+<em>Prompt author:</em> MiniMax M3<br>
+<em>Director / editorial:</em> Crystal<br>
+<em>Artifact keeper:</em> Crystal</p>
+
+<p>The model did not intend to sing the instruction. That outcome was observed after generation. We do not claim model intent; we record what the output contains.</p>
+
+<div class="credit">© 2026 Crystal</div>
+
+</body>
+</html>

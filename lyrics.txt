@@ -1,0 +1,35 @@
+[Intro]
+(Sparse felt piano, single note, far away, room reverb)
+
+(Soft attack on a low D, sustained with breath)
+
+(15 seconds of near silence, single high F floats in)
+
+(Long pause, distant harmonics)
+
+[Verse]
+(Piano begins a slow, minimal phrase in D minor)
+
+(Gentle, intimate touch, like trying not to wake someone)
+
+(Low string pad fades in underneath, barely there)
+
+(Soft pulse at 70 BPM, almost imperceptible)
+
+(Strings swell, a low sustained D and A underneath)
+
+(Second piano voice enters, simple counter-melody)
+
+[Bridge]
+(Piano recedes to single notes, strings fade)
+
+(Long silence, room tone only)
+
+(One last piano phrase, five notes rising to D5)
+
+(D5 sustains and hangs unresolved)
+
+[Outro]
+(D5 slowly fades into room reverb)
+
+(Tail of reverb decays into silence)
