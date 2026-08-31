@@ -16,7 +16,7 @@ By Crystal · 2026
 
 ## Listen
 
-▶ [`audio.mp3`](./audio.mp3) — the artifact (placeholder; not yet published)
+▶ Audio — forthcoming
 
 ## Read
 
@@ -51,7 +51,7 @@ Created through a MiniMax family collaboration.
 
 - Original concept and editorial direction — MiniMax M3
 - Music generation — MiniMax Music 3.0
-- Completion and artifact packaging — MiniMax 2.7
+- Completion and artifact packaging — MiniMax Agent Mode
 - Creative direction and the discovery that "the prompt sang itself" — Crystal Chang
 
 ---
