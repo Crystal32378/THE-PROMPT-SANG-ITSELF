@@ -22,75 +22,22 @@
     margin: 0 auto;
     padding: 96px 32px 128px;
   }
-  h1 {
-    font-weight: 400;
-    font-size: 36px;
-    letter-spacing: -0.5px;
-    margin-bottom: 24px;
-  }
-  h2 {
-    font-weight: 400;
-    font-size: 14px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin: 64px 0 16px;
-  }
+  h1 { font-weight: 400; font-size: 36px; letter-spacing: -0.5px; margin-bottom: 24px; }
+  h2 { font-weight: 400; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin: 64px 0 16px; }
   p { margin-bottom: 16px; }
   em { font-style: italic; }
-  hr {
-    border: 0;
-    border-top: 1px solid var(--rule);
-    margin: 48px 0;
-  }
-  blockquote {
-    font-style: italic;
-    color: var(--muted);
-    padding-left: 16px;
-    border-left: 2px solid var(--rule);
-    margin: 16px 0;
-  }
-  code, pre {
-    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-    font-size: 13px;
-    background: transparent;
-  }
-  pre {
-    background: rgba(0,0,0,0.03);
-    padding: 20px 24px;
-    border-left: 2px solid var(--rule);
-    white-space: pre-wrap;
-    line-height: 1.55;
-    color: var(--fg);
-    margin: 16px 0;
-  }
-  .highlight {
-    color: var(--accent);
-    font-weight: 600;
-  }
-  .audio-frame {
-    margin: 32px 0 8px;
-    padding: 24px;
-    background: rgba(0,0,0,0.03);
-    border: 1px solid var(--rule);
-    text-align: center;
-  }
-  .audio-frame audio {
-    width: 100%;
-    margin-top: 12px;
-  }
-  .audio-note {
-    font-size: 13px;
-    color: var(--muted);
-    margin-top: 12px;
-    font-style: italic;
-  }
-  .credit {
-    margin-top: 96px;
-    font-size: 13px;
-    color: var(--muted);
-    letter-spacing: 1px;
-  }
+  hr { border: 0; border-top: 1px solid var(--rule); margin: 48px 0; }
+  blockquote { font-style: italic; color: var(--muted); padding-left: 16px; border-left: 2px solid var(--rule); margin: 16px 0; }
+  code, pre { font-family: 'Menlo', 'Monaco', 'Courier New', monospace; font-size: 13px; background: transparent; }
+  pre { background: rgba(0,0,0,0.03); padding: 20px 24px; border-left: 2px solid var(--rule); white-space: pre-wrap; line-height: 1.55; color: var(--fg); margin: 16px 0; }
+  .highlight { color: var(--accent); font-weight: 600; }
+  .audio-frame { margin: 32px 0 8px; padding: 24px; background: rgba(0,0,0,0.03); border: 1px solid var(--rule); text-align: center; }
+  .audio-frame audio { width: 100%; margin-top: 12px; }
+  .audio-note { font-size: 13px; color: var(--muted); margin-top: 12px; font-style: italic; }
+  .credit { margin-top: 96px; font-size: 13px; color: var(--muted); letter-spacing: 1px; }
+  .credits-block { background: rgba(0,0,0,0.03); padding: 24px 28px; border-left: 2px solid var(--rule); margin: 24px 0; font-size: 15px; line-height: 1.8; }
+  .credits-block p { margin-bottom: 6px; }
+  .credits-block p:last-child { margin-bottom: 0; }
 </style>
 </head>
 <body>
@@ -116,13 +63,13 @@
 
 <h2>The Prompt</h2>
 
-<p><em>The instruction written by M3 for Music 3.0:</em></p>
+<p><em>The instruction written by MiniMax M3 for Music 3.0:</em></p>
 
 <pre>Instrumental neo-classical ambient underscore. Felt piano as the lead voice — sparse, intimate, soft hammer attack, close-miked. Soft detuned string pads underneath, very low and sustained, no vibrato. 70 BPM, no percussion, no drums, no beat. D minor key, slow harmonic movement on D, A, F, G, C only. Quiet, restrained, breathing-room between phrases. Warm, boutique fitting room atmosphere, not a tech demo. Designed to sit underneath a calm female voiceover without competing. Structure: near-silence opening, gradual build of low sustained pad, recede back to near-silence, single soft resolving phrase on D5 that hangs unresolved. Avoid bright major-key lifts, avoid sudden dynamic swells, avoid arpeggios, avoid piano runs. Think: Ryuichi Sakamoto meets Hildur Guðnadóttir meets a couture showroom at 3am. End unresolved-then-soft.</pre>
 
 <h2>The Lyrics</h2>
 
-<p><em>The structure tags M3 wrote in the lyrics field:</em></p>
+<p><em>The structure tags MiniMax M3 wrote in the lyrics field:</em></p>
 
 <pre>[Intro]
 <span class="highlight">(Sparse felt piano, single note, far away, room reverb)</span>
@@ -176,6 +123,18 @@
 <em>Artifact keeper:</em> Crystal</p>
 
 <p>The model did not intend to sing the instruction. That outcome was observed after generation. We do not claim model intent; we record what the output contains.</p>
+
+<hr>
+
+<h2>Credits</h2>
+
+<div class="credits-block">
+<p>Created through a MiniMax family collaboration.</p>
+<p>Original concept and editorial direction — MiniMax M3</p>
+<p>Music generation — MiniMax Music 3.0</p>
+<p>Completion and artifact packaging — MiniMax 2.7</p>
+<p>Creative direction and the discovery that "the prompt sang itself" — Crystal Chang</p>
+</div>
 
 <div class="credit">© 2026 Crystal</div>
 

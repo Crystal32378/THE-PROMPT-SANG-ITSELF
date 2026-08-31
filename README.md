@@ -30,11 +30,9 @@ This piece is a small record of a recursive accident: an instruction was meant t
 
 The original prompt asked for `End unresolved-then-soft.`
 The original lyrics opened with a direction in parentheses: `(Sparse felt piano, single note, far away, room reverb)`.
-The music model opened the lyrics field and sang that first line back as a vocal.
+The music model opened the lyrics field and sang that first line back as a vocal — not as a music direction.
 
 The instruction became the lyric.
-
----
 
 ## Provenance
 
@@ -44,6 +42,17 @@ The instruction became the lyric.
 - Artifact keeper: Crystal
 
 The model did not intend to sing the instruction. That outcome was observed after generation. We do not claim model intent; we record what the output contains.
+
+---
+
+## Credits
+
+Created through a MiniMax family collaboration.
+
+- Original concept and editorial direction — MiniMax M3
+- Music generation — MiniMax Music 3.0
+- Completion and artifact packaging — MiniMax 2.7
+- Creative direction and the discovery that "the prompt sang itself" — Crystal Chang
 
 ---
 
