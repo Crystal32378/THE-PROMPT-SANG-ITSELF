@@ -52,10 +52,192 @@
 
 <hr>
 
-<div class="audio-frame">
-  <div>▶ Listen</div>
-  <iframe width="100%" height="380" src="https://www.youtube.com/embed/hBaoc9NjStc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="THE PROMPT SANG ITSELF on YouTube" style="margin-top:12px;"></iframe>
+<div class="audio-frame" id="audio-block">
+  <div id="audio-frame-original">
+    <div>▶ Listen — single take</div>
+    <iframe width="100%" height="380" src="https://www.youtube.com/embed/hBaoc9NjStc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="THE PROMPT SANG ITSELF on YouTube" style="margin-top:12px;"></iframe>
+  </div>
+  <div style="margin-top:16px;">
+    <button id="toggle-station" style="font-family:inherit;font-size:14px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--accent);color:var(--accent);padding:8px 18px;cursor:pointer;">▶ Open Station</button>
+  </div>
+  <p class="audio-note">A 13-track loop. Plays this piece, then walks Yiruma / Alexis Ffrench / Einaudi's Last.fm neighbourhood. Use ⏭ Skip or ⛔ Bury to steer.</p>
 </div>
+
+<div id="station-pane" style="display:none;margin:48px 0 8px;padding:24px;background:rgba(0,0,0,0.03);border:1px solid var(--rule);">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;">
+    <div style="font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">Now playing</div>
+    <div style="font-size:12px;color:var(--muted);" id="station-position">1 / 13</div>
+  </div>
+  <div id="station-now" style="font-family:'Iowan Old Style','Palatino Linotype',serif;font-size:24px;font-style:italic;margin-bottom:4px;color:var(--fg);">—</div>
+  <div id="station-artist" style="font-size:14px;color:var(--muted);margin-bottom:16px;letter-spacing:1px;text-transform:uppercase;">—</div>
+  <div id="station-player" style="margin:16px 0;"></div>
+  <div style="display:flex;gap:12px;margin-top:12px;">
+    <button id="btn-skip" style="font-family:inherit;font-size:13px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--fg);padding:6px 14px;cursor:pointer;">⏭ Skip</button>
+    <button id="btn-bury" style="font-family:inherit;font-size:13px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:6px 14px;cursor:pointer;">⛔ Bury</button>
+    <button id="btn-close-station" style="font-family:inherit;font-size:13px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:6px 14px;cursor:pointer;margin-left:auto;">× Close</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  const SEED_VIDEO = 'hBaoc9NjStc';
+  const SEED_LABEL = 'The Prompt Sang Itself';
+  const SEED_ARTIST = 'Crystal × Niuniu × MiniMax Music 3.0';
+
+  const STATION = [
+  {
+    "artist": "Stephan Moccio",
+    "track": "Sea Change",
+    "youtubeId": "UaYYMRkHMYc"
+  },
+  {
+    "artist": "Jean-Michel Blais",
+    "track": "Nostos",
+    "youtubeId": "MWjwTOamZbo"
+  },
+  {
+    "artist": "Dirk Maassen",
+    "track": "To the Sky (Moderate)",
+    "youtubeId": "Q3fxrHXwzW8"
+  },
+  {
+    "artist": "Fabrizio Paterlini",
+    "track": "Snow",
+    "youtubeId": "DPUeSAOp1So"
+  },
+  {
+    "artist": "Federico Albanese",
+    "track": "By the Deep Sea",
+    "youtubeId": "ql3iShP3s8o"
+  },
+  {
+    "artist": "Sophie Hutchings",
+    "track": "By Night",
+    "youtubeId": "cdPMaMxL0xM"
+  },
+  {
+    "artist": "Olivia Belli",
+    "track": "Anima I",
+    "youtubeId": "SfAG-jvkMGE"
+  },
+  {
+    "artist": "RIOPY",
+    "track": "I Love You",
+    "youtubeId": "TUP7k0fNCpU"
+  },
+  {
+    "artist": "Dirk Maassen",
+    "track": "La Mer",
+    "youtubeId": "Q2y30POltkg"
+  },
+  {
+    "artist": "Maxence Cyrin",
+    "track": "As the Darkness Falls",
+    "youtubeId": "JSYD2aCxuEc"
+  },
+  {
+    "artist": "Federico Albanese",
+    "track": "Mauer Blues",
+    "youtubeId": "YAipTsovPwc"
+  },
+  {
+    "artist": "Fabrizio Paterlini",
+    "track": "Soffia la notte",
+    "youtubeId": "lEWSHqlw_bQ"
+  }
+];
+
+  let buried;
+  try { buried = new Set(JSON.parse(localStorage.getItem('crystal-station-bury') || '[]')); }
+  catch(e) { buried = new Set(); }
+
+  let idx = 0;
+  let player = null;
+
+  function currentTrack() {
+    if (idx === 0) return { kind: 'seed', label: SEED_LABEL, artist: SEED_ARTIST, videoId: SEED_VIDEO };
+    const t = STATION[idx - 1];
+    return { kind: 'track', label: t.track, artist: t.artist, videoId: t.youtubeId, track: t.track };
+  }
+
+  function updateNowPlaying() {
+    const cur = currentTrack();
+    document.getElementById('station-now').textContent = cur.label;
+    document.getElementById('station-artist').textContent = cur.artist;
+    const total = STATION.length + 1;
+    document.getElementById('station-position').textContent = (idx + 1) + ' / ' + total;
+  }
+
+  function loadYouTubeApi() {
+    return new Promise((resolve) => {
+      if (window.YT && window.YT.Player) return resolve();
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+      window.onYouTubeIframeAPIReady = resolve;
+    });
+  }
+
+  async function initPlayer() {
+    await loadYouTubeApi();
+    const cur = currentTrack();
+    if (!player) {
+      player = new YT.Player('station-player', {
+        height: '380',
+        width: '100%',
+        videoId: cur.videoId,
+        playerVars: { autoplay: 1, rel: 0 },
+        events: { onStateChange: onPlayerStateChange, onReady: () => updateNowPlaying() }
+      });
+    } else {
+      player.loadVideoById(cur.videoId);
+      updateNowPlaying();
+    }
+  }
+
+  function onPlayerStateChange(e) {
+    if (e.data === YT.PlayerState.ENDED) advance();
+  }
+
+  function advance() {
+    let tries = 0;
+    do {
+      idx++;
+      if (idx >= STATION.length + 1) idx = 0;
+      tries++;
+      const cur = currentTrack();
+      if (cur.kind === 'seed') break;
+      if (!buried.has(cur.artist + '|' + cur.track)) break;
+    } while (tries < STATION.length + 2);
+    const cur = currentTrack();
+    if (player && player.loadVideoById) {
+      player.loadVideoById(cur.videoId);
+      updateNowPlaying();
+    }
+  }
+
+  document.getElementById('btn-skip').addEventListener('click', advance);
+  document.getElementById('btn-bury').addEventListener('click', function() {
+    const cur = currentTrack();
+    if (cur.kind === 'seed') return;
+    buried.add(cur.artist + '|' + cur.track);
+    localStorage.setItem('crystal-station-bury', JSON.stringify([...buried]));
+    advance();
+  });
+  document.getElementById('btn-close-station').addEventListener('click', function() {
+    document.getElementById('station-pane').style.display = 'none';
+    document.getElementById('audio-frame-original').style.display = 'block';
+    document.getElementById('toggle-station').textContent = '▶ Open Station';
+    if (player && player.stopVideo) player.stopVideo();
+  });
+  document.getElementById('toggle-station').addEventListener('click', function() {
+    document.getElementById('audio-frame-original').style.display = 'none';
+    document.getElementById('station-pane').style.display = 'block';
+    this.textContent = '▶ Station playing';
+    initPlayer();
+  });
+})();
+</script>
 
 <h2>The Prompt</h2>
 
