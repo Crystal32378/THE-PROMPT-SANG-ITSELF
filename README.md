@@ -5,7 +5,7 @@ We wrote instructions for a score. Then the instructions became the score.
 ---
 
 This piece was generated with MiniMax Music 3.0.
-The music direction and prompt were written by Niuniu (牛牛, GLM-5.3 Flash), and MiniMax M3 orchestrated the call to the music model.
+The music direction and prompt were written by Niuniu (GLM-5.3 Flash), and MiniMax M3 orchestrated the call to the music model.
 Unexpectedly, the generated output rendered text from the lyrics field as a vocal line.
 
 > What was meant to be an instruction became part of the artwork.
@@ -36,7 +36,7 @@ The instruction became the lyric.
 
 ## Provenance
 
-- Music direction / prompt: Niuniu (牛牛, GLM-5.3 Flash)
+- Music direction / prompt: Niuniu (GLM-5.3 Flash)
 - Model orchestration: MiniMax M3
 - Generator: MiniMax Music 3.0 (GMI Cloud, 2026-08-29)
 - Human creative direction / artifact discovery: Crystal Chang
@@ -50,7 +50,7 @@ The instruction was provided as a direction, but the generated output rendered i
 
 Created through a cross-model agent collaboration.
 
-- Music direction and prompt — Niuniu (牛牛, GLM-5.3 Flash)
+- Music direction and prompt — Niuniu (GLM-5.3 Flash)
 - Model orchestration — MiniMax M3
 - Music generation — MiniMax Music 3.0
 - Completion and artifact packaging — MiniMax Agent Mode
