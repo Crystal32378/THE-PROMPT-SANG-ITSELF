@@ -57,15 +57,17 @@
     <div>▶ Listen — single take</div>
     <iframe width="100%" height="380" src="https://www.youtube.com/embed/hBaoc9NjStc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="THE PROMPT SANG ITSELF on YouTube" style="margin-top:12px;"></iframe>
   </div>
-  <div style="margin-top:16px;">
-    <button id="toggle-station" style="font-family:inherit;font-size:14px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--accent);color:var(--accent);padding:8px 18px;cursor:pointer;">▶ Open Station</button>
+  <div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:10px;">
+    <button class="station-btn" data-station="1" style="font-family:inherit;font-size:13px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--accent);color:var(--accent);padding:8px 16px;cursor:pointer;">▶ Station 1 — Sakamoto couture</button>
+    <button class="station-btn" data-station="2" style="font-family:inherit;font-size:13px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--accent);color:var(--accent);padding:8px 16px;cursor:pointer;">▶ Station 2 — Anime ambient</button>
+    <button class="station-btn" data-station="3" style="font-family:inherit;font-size:13px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--accent);color:var(--accent);padding:8px 16px;cursor:pointer;">▶ Station 3 — Film score</button>
   </div>
-  <p class="audio-note">A 13-track loop. Plays this piece, then walks Yiruma / Alexis Ffrench / Einaudi's Last.fm neighbourhood. Use ⏭ Skip or ⛔ Bury to steer.</p>
+  <p class="audio-note">Three stations. Each loops its own list. ⏭ Skip or ⛔ Bury to steer.</p>
 </div>
 
 <div id="station-pane" style="display:none;margin:48px 0 8px;padding:24px;background:rgba(0,0,0,0.03);border:1px solid var(--rule);">
   <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;">
-    <div style="font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">Now playing</div>
+    <div style="font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">Now playing · <span id="station-name">—</span></div>
     <div style="font-size:12px;color:var(--muted);" id="station-position">1 / 13</div>
   </div>
   <div id="station-now" style="font-family:'Iowan Old Style','Palatino Linotype',serif;font-size:24px;font-style:italic;margin-bottom:4px;color:var(--fg);">—</div>
@@ -84,69 +86,245 @@
   const SEED_LABEL = 'The Prompt Sang Itself';
   const SEED_ARTIST = 'Crystal × Niuniu × MiniMax Music 3.0';
 
-  const STATION = [
+  const STATIONS = {
+    '1': { name: 'Station 1 — Sakamoto couture', data: [
+  {
+    "artist": "Ludovico Einaudi",
+    "track": "Una Mattina",
+    "source": "crystal",
+    "youtubeId": "MPlkHxFA-Qg"
+  },
   {
     "artist": "Stephan Moccio",
     "track": "Sea Change",
-    "youtubeId": "UaYYMRkHMYc"
+    "youtubeId": "UaYYMRkHMYc",
+    "source": "lastfm"
   },
   {
     "artist": "Jean-Michel Blais",
     "track": "Nostos",
-    "youtubeId": "MWjwTOamZbo"
+    "youtubeId": "MWjwTOamZbo",
+    "source": "lastfm"
   },
   {
     "artist": "Dirk Maassen",
     "track": "To the Sky (Moderate)",
-    "youtubeId": "Q3fxrHXwzW8"
+    "youtubeId": "Q3fxrHXwzW8",
+    "source": "lastfm"
   },
   {
     "artist": "Fabrizio Paterlini",
     "track": "Snow",
-    "youtubeId": "DPUeSAOp1So"
+    "youtubeId": "DPUeSAOp1So",
+    "source": "lastfm"
   },
   {
     "artist": "Federico Albanese",
     "track": "By the Deep Sea",
-    "youtubeId": "ql3iShP3s8o"
+    "youtubeId": "ql3iShP3s8o",
+    "source": "lastfm"
   },
   {
     "artist": "Sophie Hutchings",
     "track": "By Night",
-    "youtubeId": "cdPMaMxL0xM"
+    "youtubeId": "cdPMaMxL0xM",
+    "source": "lastfm"
   },
   {
     "artist": "Olivia Belli",
     "track": "Anima I",
-    "youtubeId": "SfAG-jvkMGE"
+    "youtubeId": "SfAG-jvkMGE",
+    "source": "lastfm"
   },
   {
     "artist": "RIOPY",
     "track": "I Love You",
-    "youtubeId": "TUP7k0fNCpU"
+    "youtubeId": "TUP7k0fNCpU",
+    "source": "lastfm"
   },
   {
     "artist": "Dirk Maassen",
     "track": "La Mer",
-    "youtubeId": "Q2y30POltkg"
+    "youtubeId": "Q2y30POltkg",
+    "source": "lastfm"
   },
   {
     "artist": "Maxence Cyrin",
     "track": "As the Darkness Falls",
-    "youtubeId": "JSYD2aCxuEc"
+    "youtubeId": "JSYD2aCxuEc",
+    "source": "lastfm"
   },
   {
     "artist": "Federico Albanese",
     "track": "Mauer Blues",
-    "youtubeId": "YAipTsovPwc"
+    "youtubeId": "YAipTsovPwc",
+    "source": "lastfm"
   },
   {
     "artist": "Fabrizio Paterlini",
     "track": "Soffia la notte",
-    "youtubeId": "lEWSHqlw_bQ"
+    "youtubeId": "lEWSHqlw_bQ",
+    "source": "lastfm"
   }
-];
+] },
+    '2': { name: 'Station 2 — Anime ambient',   data: [
+  {
+    "artist": "Taro Umebayashi",
+    "track": "Yuri on ICE",
+    "source": "crystal",
+    "youtubeId": "rOH3R_BRpek"
+  },
+  {
+    "artist": "RADWIMTS",
+    "track": "花火大会",
+    "source": "crystal",
+    "youtubeId": "axEHO8V6-4c"
+  },
+  {
+    "artist": "DJ Okawari",
+    "track": "Luv Letter",
+    "source": "crystal",
+    "youtubeId": "_zMcKruOqa8"
+  },
+  {
+    "artist": "Epidemic Sound",
+    "track": "DREAM 3",
+    "source": "crystal",
+    "youtubeId": "JT0RqTyZYEk"
+  },
+  {
+    "artist": "Taro Umebayashi",
+    "track": "Agape",
+    "source": "lastfm",
+    "youtubeId": "4ApDiX0_X_k"
+  },
+  {
+    "artist": "Taro Umebayashi",
+    "track": "Theme of King J.J.",
+    "source": "lastfm",
+    "youtubeId": "lCDqUY2GkoI"
+  },
+  {
+    "artist": "Taro Umebayashi",
+    "track": "Partizan Hope",
+    "source": "lastfm",
+    "youtubeId": "U_hB82eVv9Y"
+  },
+  {
+    "artist": "Taku Matsushiba",
+    "track": "アリア《離れずにそばにいて》",
+    "source": "lastfm",
+    "youtubeId": "2J5l59LJj2A"
+  },
+  {
+    "artist": "Yorushika",
+    "track": "花に亡霊",
+    "source": "agent-claim",
+    "youtubeId": "9lVPAWLWtWc"
+  },
+  {
+    "artist": "Ryuichi Sakamoto",
+    "track": "Merry Christmas Mr. Lawrence",
+    "source": "agent-claim",
+    "youtubeId": "ELJf83TelA0"
+  },
+  {
+    "artist": "Joe Hisaishi",
+    "track": "Summer",
+    "source": "agent-claim",
+    "youtubeId": "l0GN40EL1VU"
+  },
+  {
+    "artist": "EXILE",
+    "track": "Lovers Again (Instrumental)",
+    "source": "crystal",
+    "youtubeId": "baOfrRVJTdA"
+  },
+  {
+    "artist": "Taku Matsushiba",
+    "track": "Garden of April",
+    "source": "crystal",
+    "youtubeId": "-9SXN7uvFQQ"
+  }
+] },
+    '3': { name: 'Station 3 — Film score',      data: [
+  {
+    "artist": "Hans Zimmer",
+    "track": "Time",
+    "source": "crystal",
+    "youtubeId": "c56t7upa8Bk"
+  },
+  {
+    "artist": "Max Richter",
+    "track": "On the Nature of Daylight",
+    "source": "lastfm",
+    "youtubeId": "InyT9Gyoz_o"
+  },
+  {
+    "artist": "Jóhann Jóhannsson",
+    "track": "Flight from the City",
+    "source": "lastfm",
+    "youtubeId": "OtfmorEK50Y"
+  },
+  {
+    "artist": "Yann Tiersen",
+    "track": "Comptine d'un autre été",
+    "source": "lastfm",
+    "youtubeId": "PaXKf0JEzEA"
+  },
+  {
+    "artist": "Michael Nyman",
+    "track": "The Heart Asks Pleasure First",
+    "source": "crystal",
+    "youtubeId": "toOShA7omUk"
+  },
+  {
+    "artist": "Alexandre Desplat",
+    "track": "Lily's Theme",
+    "source": "crystal",
+    "youtubeId": "PPogqE-0QBk"
+  },
+  {
+    "artist": "Ramin Djawadi",
+    "track": "Light of the Seven",
+    "source": "crystal",
+    "youtubeId": "QJHPlKPOc78"
+  },
+  {
+    "artist": "Hildur Guðnadóttir",
+    "track": "Without Sorrow",
+    "source": "lastfm",
+    "youtubeId": "MNPDLpG33J8"
+  },
+  {
+    "artist": "Ólafur Arnalds",
+    "track": "Near Light",
+    "source": "lastfm",
+    "youtubeId": "0kYc55bXJFI"
+  },
+  {
+    "artist": "Dario Marianelli",
+    "track": "Dawn",
+    "source": "lastfm",
+    "youtubeId": "nc_5XL6ae4I"
+  },
+  {
+    "artist": "Nicholas Britell",
+    "track": "Agape",
+    "source": "lastfm",
+    "youtubeId": "mmK71ZfaZO4"
+  },
+  {
+    "artist": "Philip Glass",
+    "track": "Opening",
+    "source": "lastfm",
+    "youtubeId": "-nBE9U7q1Uc"
+  }
+] }
+  };
 
+  let currentStationId = null;
+  let STATION = [];
   let buried;
   try { buried = new Set(JSON.parse(localStorage.getItem('crystal-station-bury') || '[]')); }
   catch(e) { buried = new Set(); }
@@ -154,10 +332,12 @@
   let idx = 0;
   let player = null;
 
+  function buryKey(s) { return s.artist + '|' + s.track; }
+
   function currentTrack() {
     if (idx === 0) return { kind: 'seed', label: SEED_LABEL, artist: SEED_ARTIST, videoId: SEED_VIDEO };
     const t = STATION[idx - 1];
-    return { kind: 'track', label: t.track, artist: t.artist, videoId: t.youtubeId, track: t.track };
+    return { kind: 'track', label: t.track, artist: t.artist, videoId: t.youtubeId, track: t.track, src: t };
   }
 
   function updateNowPlaying() {
@@ -207,7 +387,7 @@
       tries++;
       const cur = currentTrack();
       if (cur.kind === 'seed') break;
-      if (!buried.has(cur.artist + '|' + cur.track)) break;
+      if (!buried.has(buryKey(cur.src))) break;
     } while (tries < STATION.length + 2);
     const cur = currentTrack();
     if (player && player.loadVideoById) {
@@ -216,26 +396,36 @@
     }
   }
 
+  function openStation(id) {
+    const cfg = STATIONS[id];
+    if (!cfg) return;
+    currentStationId = id;
+    STATION = cfg.data;
+    idx = 0;
+    document.getElementById('station-name').textContent = cfg.name;
+    document.getElementById('audio-frame-original').style.display = 'none';
+    document.getElementById('station-pane').style.display = 'block';
+    initPlayer();
+  }
+
+  function closeStation() {
+    document.getElementById('station-pane').style.display = 'none';
+    document.getElementById('audio-frame-original').style.display = 'block';
+    if (player && player.stopVideo) player.stopVideo();
+  }
+
+  document.querySelectorAll('.station-btn').forEach(b => {
+    b.addEventListener('click', () => openStation(b.dataset.station));
+  });
   document.getElementById('btn-skip').addEventListener('click', advance);
   document.getElementById('btn-bury').addEventListener('click', function() {
     const cur = currentTrack();
     if (cur.kind === 'seed') return;
-    buried.add(cur.artist + '|' + cur.track);
+    buried.add(buryKey(cur.src));
     localStorage.setItem('crystal-station-bury', JSON.stringify([...buried]));
     advance();
   });
-  document.getElementById('btn-close-station').addEventListener('click', function() {
-    document.getElementById('station-pane').style.display = 'none';
-    document.getElementById('audio-frame-original').style.display = 'block';
-    document.getElementById('toggle-station').textContent = '▶ Open Station';
-    if (player && player.stopVideo) player.stopVideo();
-  });
-  document.getElementById('toggle-station').addEventListener('click', function() {
-    document.getElementById('audio-frame-original').style.display = 'none';
-    document.getElementById('station-pane').style.display = 'block';
-    this.textContent = '▶ Station playing';
-    initPlayer();
-  });
+  document.getElementById('btn-close-station').addEventListener('click', closeStation);
 })();
 </script>
 
