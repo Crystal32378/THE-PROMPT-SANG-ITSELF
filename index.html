@@ -62,7 +62,7 @@
 <details style="margin-top:24px;">
   <summary style="font-family:inherit;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;">
     <span style="display:inline-block;transition:transform 0.2s;color:var(--accent);" id="stations-arrow">▶</span>
-    <span style="color:var(--fg);">Three Stations</span>
+    <span style="color:var(--fg);">Four Stations</span>
   </summary>
   <div style="margin-top:16px;padding:24px;background:rgba(0,0,0,0.03);border:1px solid var(--rule);">
     <p style="font-size:13px;color:var(--muted);margin-bottom:16px;font-style:italic;">Each station loops its own list. ⏭ Skip or ⛔ Bury to steer.</p>
@@ -70,6 +70,7 @@
       <button class="station-btn" data-station="1" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--accent);color:var(--accent);padding:6px 14px;cursor:pointer;">▶ Station 1 — Sakamoto couture</button>
       <button class="station-btn" data-station="2" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--accent);color:var(--accent);padding:6px 14px;cursor:pointer;">▶ Station 2 — Anime ambient</button>
       <button class="station-btn" data-station="3" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--accent);color:var(--accent);padding:6px 14px;cursor:pointer;">▶ Station 3 — Film score</button>
+      <button class="station-btn" data-station="4" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--accent);color:var(--accent);padding:6px 14px;cursor:pointer;">▶ Station 4 — When Opus & Mini in the House</button>
     </div>
 
     <div id="station-pane" style="display:none;padding:20px;background:rgba(0,0,0,0.04);border:1px solid var(--rule);">
@@ -84,6 +85,27 @@
         <button id="btn-skip" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--fg);padding:5px 12px;cursor:pointer;">⏭ Skip</button>
         <button id="btn-bury" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;">⛔ Bury</button>
         <button id="btn-close-station" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;margin-left:auto;">× Close</button>
+      </div>
+    </div>
+
+    <div id="station4-pane" style="display:none;padding:24px;background:rgba(0,0,0,0.04);border:1px solid var(--rule);">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;">
+        <div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">Station 4 · When Opus & Mini in the House</div>
+        <div style="font-size:11px;color:var(--muted);" id="s4-position">1 / 7</div>
+      </div>
+      <div id="s4-track-title" style="font-family:'Iowan Old Style','Palatino Linotype',serif;font-size:22px;font-style:italic;margin-bottom:4px;color:var(--fg);">—</div>
+      <div id="s4-track-meta" style="font-size:12px;color:var(--muted);margin-bottom:6px;letter-spacing:1px;text-transform:uppercase;">—</div>
+      <div id="s4-track-note" style="font-size:14px;color:var(--fg);font-style:italic;margin-bottom:14px;line-height:1.5;">—</div>
+      <audio id="s4-audio" controls preload="metadata" style="width:100%;margin:8px 0 14px 0;"></audio>
+      <div id="s4-measurements" style="display:none;background:rgba(0,0,0,0.03);padding:12px 16px;border-left:2px solid var(--rule);margin-bottom:14px;font-family:'Menlo','Monaco',monospace;font-size:12px;line-height:1.6;color:var(--muted);"></div>
+      <details style="margin-bottom:14px;">
+        <summary style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);cursor:pointer;list-style:none;">▾ Original prompt</summary>
+        <pre id="s4-prompt" style="margin-top:12px;font-size:12px;line-height:1.55;white-space:pre-wrap;color:var(--fg);background:rgba(0,0,0,0.03);padding:14px 18px;border-left:2px solid var(--rule);">—</pre>
+      </details>
+      <div style="display:flex;gap:10px;margin-top:8px;">
+        <button id="s4-skip" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--fg);padding:5px 12px;cursor:pointer;">⏭ Skip</button>
+        <button id="s4-bury" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;">⛔ Bury</button>
+        <button id="s4-close" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;margin-left:auto;">× Close</button>
       </div>
     </div>
   </div>
@@ -407,6 +429,9 @@
   function openStation(id) {
     const cfg = STATIONS[id];
     if (!cfg) return;
+    // Close station4 pane if open (only one station visible at a time)
+    const s4 = document.getElementById('station4-pane');
+    if (s4) s4.style.display = 'none';
     STATION = cfg.data;
     idx = 0;
     document.getElementById('station-name').textContent = cfg.name;
@@ -438,6 +463,222 @@
     advance();
   });
   document.getElementById('btn-close-station').addEventListener('click', closeStation);
+})();
+</script>
+
+<script>
+// Station 4 — When Opus & Mini in the House
+// Local mp3 files, with metadata + prompt expansion.
+(function() {
+  const STATION4 = [
+    {
+      "track": "Opening_A",
+      "file": "Opening_A.mp3",
+      "duration_briefed": "15 seconds",
+      "duration_delivered": "2:00.111",
+      "artist": "MiniMax Music 3.0",
+      "human_direction": "MiniMax M3 → Music 3.0",
+      "source": "crystal-music3",
+      "original_prompt": "Whimsical orchestral score for a Wes Anderson style film. Marimba, glockenspiel, celesta, light pizzicato strings, soft accordion. Playful, light, sweet. Tempo 110-120 BPM, syncopated but not chaotic. Major key, warm. Pastel mood. Reference composers: Alexandre Desplat (The Grand Budapest Hotel, Moonrise Kingdom), Randall Poster (The Royal Tenenbaums). Style: indie film soundtrack, comedy, whimsical, vintage. The piece should feel like a small toy orchestra playing in a perfect pastel-colored world.\n\nA 15-second opening cue for a film. Structure: (1) opening — single marimba note, then soft celesta chord and pizzicato strings hovering, no melody, feeling of a question being asked; (2) middle — marimba and glockenspiel begin a staccato syncopated pattern, pizzicato walking bassline, celesta 2-note accents, accordion sustained chord, feeling of a small clockwork machine working; (3) ending — full small orchestra plays a 4-bar sweet major-key cadence, pizzicato carries the melody for the first time, accordion sustains, feeling of a small problem solved with elegance, then gentle taper ending on a soft celesta chord that holds and fades. Bright but not triumphant. No hard cut. Tempo 110-115 BPM throughout. Light dynamic range, never loud.",
+      "crystal_note": "tracks for those who don't have the memory.",
+      "offbrief": true,
+      "measurements": {
+        "measured_by": "Opus 5 / Claude Code",
+        "peak_dBFS": -0.47,
+        "peak_pulled_to": -7.0,
+        "first_audible_seconds": 0.25,
+        "arc": "-32 dB at 0s, -15.5 by 3s, settles -17 to -21",
+        "used_range_seconds": "0.000 – 18.600",
+        "fade_range_seconds": "17.100 → 18.600",
+        "silent_by_seconds": 18.6,
+        "silent_by_dBFS": -91.6
+      },
+      "liner_note": "— measured by Opus 5, who has never heard a note of it",
+      "curation_by": "Crystal",
+      "note_authority": "prompt author was M3; crystal_note is curator's selection reason"
+    },
+    {
+      "track": "2",
+      "file": "2.mp3",
+      "duration_briefed": "2:30–2:45",
+      "duration_delivered": null,
+      "artist": "MiniMax Music 3.0",
+      "human_direction": "MiniMax M3 → Music 3.0",
+      "source": "crystal-music3",
+      "original_prompt": "Instrumental only, no vocals of any kind. No singing, no humming, no vocal samples, no spoken word, no choir pads, no vocal chops, no voice-like synthesis, no lyrics performance. Purely instrumental neo-classical ambient underscore.\n\nSparse felt piano as lead, soft warm hammer attack, close-miked, intimate, dry with room reverb. Soft detuned string pads underneath, very low sustained, no vibrato. 70 BPM. No percussion, no drums, no beat, no rhythm section. D minor key, slow harmonic movement on D, A, F, G, C. Quiet, restrained, generous silence between phrases, breathing room.\n\nTarget length 2 minutes 30 seconds to 2 minutes 45 seconds. Designed to sit underneath a calm English female voiceover, so the 1 to 4 kHz mid range must remain empty and clear for voice. Carve out midrange. No arpeggios, no piano runs, no bright major-key lifts, no sudden dynamic swells, no crescendo into climax, no drops, no EDM build, no tech demo energy.\n\nMood: warm, restrained, intimate, private. A quiet luxury fitting room at 3am. Couture, not corporate. Think Ryuichi Sakamoto meets Hildur Guðnadóttir meets a bridal salon after closing. End unresolved-soft, last note hanging.\n\nOne single lead voice: felt piano. All other elements are background. Background never competes with lead. Voice must not appear at any point in the audio.",
+      "crystal_note": "save for the record",
+      "offbrief": true,
+      "measurements": {},
+      "liner_note": "",
+      "curation_by": "Crystal",
+      "note_authority": "prompt author was M3; crystal_note is curator's selection reason"
+    },
+    {
+      "track": "3",
+      "file": "3.mp3",
+      "duration_briefed": null,
+      "duration_delivered": null,
+      "artist": "MiniMax Music 3.0",
+      "human_direction": "MiniMax M3 → Music 3.0",
+      "source": "crystal-music3",
+      "original_prompt": "(unfiled)",
+      "crystal_note": "(unfiled)",
+      "offbrief": null,
+      "measurements": {},
+      "liner_note": "",
+      "curation_by": "Crystal",
+      "note_authority": "prompt author was M3; crystal_note is curator's selection reason"
+    },
+    {
+      "track": "4",
+      "file": "4.mp3",
+      "duration_briefed": null,
+      "duration_delivered": null,
+      "artist": "MiniMax Music 3.0",
+      "human_direction": "MiniMax M3 → Music 3.0",
+      "source": "crystal-music3",
+      "original_prompt": "(unfiled)",
+      "crystal_note": "(unfiled)",
+      "offbrief": null,
+      "measurements": {},
+      "liner_note": "",
+      "curation_by": "Crystal",
+      "note_authority": "prompt author was M3; crystal_note is curator's selection reason"
+    },
+    {
+      "track": "5",
+      "file": "5.mp3",
+      "duration_briefed": null,
+      "duration_delivered": null,
+      "artist": "MiniMax Music 3.0",
+      "human_direction": "MiniMax M3 → Music 3.0",
+      "source": "crystal-music3",
+      "original_prompt": "(unfiled)",
+      "crystal_note": "(unfiled)",
+      "offbrief": null,
+      "measurements": {},
+      "liner_note": "",
+      "curation_by": "Crystal",
+      "note_authority": "prompt author was M3; crystal_note is curator's selection reason"
+    },
+    {
+      "track": "6",
+      "file": "6.mp3",
+      "duration_briefed": null,
+      "duration_delivered": null,
+      "artist": "MiniMax Music 3.0",
+      "human_direction": "MiniMax M3 → Music 3.0",
+      "source": "crystal-music3",
+      "original_prompt": "(unfiled)",
+      "crystal_note": "(unfiled)",
+      "offbrief": null,
+      "measurements": {},
+      "liner_note": "",
+      "curation_by": "Crystal",
+      "note_authority": "prompt author was M3; crystal_note is curator's selection reason"
+    },
+    {
+      "track": "Score",
+      "file": "Score.mp3",
+      "duration_briefed": null,
+      "duration_delivered": null,
+      "artist": "MiniMax Music 3.0",
+      "human_direction": "MiniMax M3 → Music 3.0",
+      "source": "crystal-music3",
+      "original_prompt": "Whimsical orchestral score for a Wes Anderson style film. Marimba, glockenspiel, celesta, light pizzicato strings, soft accordion. Playful, light, sweet. Tempo 110-120 BPM, syncopated but not chaotic. Major key, warm. Pastel mood. Reference composers: Alexandre Desplat (The Grand Budapest Hotel, Moonrise Kingdom), Randall Poster (The Royal Tenenbaums). Style: indie film soundtrack, comedy, whimsical, vintage. The piece should feel like a small toy orchestra playing in a perfect pastel-colored world.",
+      "crystal_note": "for those who seem disciplined but untamed",
+      "offbrief": true,
+      "measurements": {},
+      "liner_note": "",
+      "curation_by": "Crystal",
+      "note_authority": "prompt author was M3; crystal_note is curator's selection reason"
+    }
+  ];
+  let idx = 0;
+  let buried;
+  try { buried = new Set(JSON.parse(localStorage.getItem('crystal-station4-bury') || '[]')); }
+  catch(e) { buried = new Set(); }
+
+  const audio = document.getElementById('s4-audio');
+
+  function render() {
+    const t = STATION4[idx];
+    document.getElementById('s4-track-title').textContent = `I. ${t.track}`;
+    let meta = t.artist || 'MiniMax Music 3.0';
+    if (t.duration_briefed || t.duration_delivered) {
+      const parts = [];
+      if (t.duration_briefed) parts.push(`briefed ${t.duration_briefed}`);
+      if (t.duration_delivered) parts.push(`delivered ${t.duration_delivered}`);
+      meta += ' · ' + parts.join(' · ');
+    }
+    document.getElementById('s4-track-meta').textContent = meta;
+    document.getElementById('s4-track-note').textContent = t.crystal_note || '';
+    document.getElementById('s4-prompt').textContent = t.original_prompt || '(unfiled)';
+    document.getElementById('s4-position').textContent = (idx + 1) + ' / ' + STATION4.length;
+
+    // Measurements panel (if present)
+    const meas = t.measurements || {};
+    const measDiv = document.getElementById('s4-measurements');
+    if (Object.keys(meas).length) {
+      let html = '';
+      for (const k of Object.keys(meas)) {
+        html += `<div><span style="color:var(--accent);">${k}</span>: ${meas[k]}</div>`;
+      }
+      if (t.liner_note) html += `<div style="margin-top:8px;font-style:italic;">${t.liner_note}</div>`;
+      measDiv.innerHTML = html;
+      measDiv.style.display = 'block';
+    } else {
+      measDiv.style.display = 'none';
+    }
+
+    audio.src = 'assets/station4/' + t.file;
+    audio.load();
+  }
+
+  function advance() {
+    let tries = 0;
+    do {
+      idx++;
+      if (idx >= STATION4.length) idx = 0;
+      tries++;
+      const t = STATION4[idx];
+      if (!buried.has(t.track)) break;
+    } while (tries < STATION4.length + 2);
+    render();
+    audio.play().catch(() => {});
+  }
+
+  function openStation4() {
+    // Close station1/2/3 pane if open
+    document.getElementById('station-pane').style.display = 'none';
+    const pane = document.getElementById('station4-pane');
+    pane.style.display = 'block';
+    idx = 0;
+    render();
+    audio.play().catch(() => {});
+  }
+
+  function closeStation4() {
+    document.getElementById('station4-pane').style.display = 'none';
+    audio.pause();
+  }
+
+  function buryCurrent() {
+    const t = STATION4[idx];
+    buried.add(t.track);
+    localStorage.setItem('crystal-station4-bury', JSON.stringify([...buried]));
+    advance();
+  }
+
+  document.querySelectorAll('.station-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      if (b.dataset.station === '4') openStation4();
+    });
+  });
+  document.getElementById('s4-skip').addEventListener('click', advance);
+  document.getElementById('s4-bury').addEventListener('click', buryCurrent);
+  document.getElementById('s4-close').addEventListener('click', closeStation4);
+  audio.addEventListener('ended', advance);
 })();
 </script>
 
