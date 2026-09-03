@@ -62,7 +62,7 @@
 <details style="margin-top:24px;">
   <summary style="font-family:inherit;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;">
     <span style="display:inline-block;transition:transform 0.2s;color:var(--accent);" id="stations-arrow">▶</span>
-    <span style="color:var(--fg);">Four Stations</span>
+    <span style="color:var(--fg);">Five Stations</span>
   </summary>
   <div style="margin-top:16px;padding:24px;background:rgba(0,0,0,0.03);border:1px solid var(--rule);">
     <p style="font-size:13px;color:var(--muted);margin-bottom:16px;font-style:italic;">Each station loops its own list. ⏭ Skip or ⛔ Bury to steer.</p>
@@ -71,6 +71,7 @@
       <button class="station-btn" data-station="2" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--accent);color:var(--accent);padding:6px 14px;cursor:pointer;">▶ Station 2 — Anime ambient</button>
       <button class="station-btn" data-station="3" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--accent);color:var(--accent);padding:6px 14px;cursor:pointer;">▶ Station 3 — Film score</button>
       <button class="station-btn" data-station="4" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--accent);color:var(--accent);padding:6px 14px;cursor:pointer;">▶ Station 4 — When Opus & Mini in the House</button>
+      <button class="station-btn" data-station="5" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--accent);color:var(--accent);padding:6px 14px;cursor:pointer;">▶ Station 5 — The Miniature Studio Broadcasts Itself</button>
     </div>
 
     <div id="station-pane" style="display:none;padding:20px;background:rgba(0,0,0,0.04);border:1px solid var(--rule);">
@@ -106,6 +107,32 @@
         <button id="s4-skip" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--fg);padding:5px 12px;cursor:pointer;">⏭ Skip</button>
         <button id="s4-bury" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;">⛔ Bury</button>
         <button id="s4-close" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;margin-left:auto;">× Close</button>
+      </div>
+    </div>
+
+    <div id="station5-pane" style="display:none;padding:24px;background:rgba(0,0,0,0.04);border:1px solid var(--rule);">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;">
+        <div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">Station 5 · The Miniature Studio Broadcasts Itself</div>
+        <div style="font-size:11px;color:var(--muted);" id="s5-position">1 / 8</div>
+      </div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:6px;letter-spacing:1px;text-transform:uppercase;">飛寶 × Gemini Reel Crew 紀念台 · 8 tracks · Music 3.0 (free 至 9/6)</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:14px;font-style:italic;line-height:1.55;">Prompt 由飛寶起草, Mini DJ 調度; 指令不保證遵守是本台特色, 不是缺陷。<br>共通底色: miniature film-studio diorama, handcrafted cardboard-and-lacquered-wood scale, tilt-shift intimacy, desaturated retro macaron palette. Toy-scale foley as percussion: small sounds taken seriously. No drums kit — the props are the drummers.</div>
+      <div id="s5-track-title" style="font-family:'Iowan Old Style','Palatino Linotype',serif;font-size:22px;font-style:italic;margin-bottom:4px;color:var(--fg);">—</div>
+      <div id="s5-track-meta" style="font-size:12px;color:var(--muted);margin-bottom:6px;letter-spacing:1px;text-transform:uppercase;">—</div>
+      <div id="s5-track-note" style="font-size:14px;color:var(--fg);font-style:italic;margin-bottom:14px;line-height:1.55;">—</div>
+      <audio id="s5-audio" controls preload="metadata" style="width:100%;margin:8px 0 14px 0;"></audio>
+      <div id="s5-lyrics-wrap" style="display:none;margin-bottom:14px;background:rgba(0,0,0,0.03);padding:14px 18px;border-left:2px solid var(--rule);">
+        <div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Lyrics (stage direction)</div>
+        <pre id="s5-lyrics" style="font-family:'Menlo','Monaco',monospace;font-size:13px;line-height:1.6;white-space:pre-wrap;color:var(--fg);">—</pre>
+      </div>
+      <details style="margin-bottom:14px;">
+        <summary style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);cursor:pointer;list-style:none;">▾ Original prompt</summary>
+        <pre id="s5-prompt" style="margin-top:12px;font-size:12px;line-height:1.55;white-space:pre-wrap;color:var(--fg);background:rgba(0,0,0,0.03);padding:14px 18px;border-left:2px solid var(--rule);">—</pre>
+      </details>
+      <div style="display:flex;gap:10px;margin-top:8px;">
+        <button id="s5-skip" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--fg);padding:5px 12px;cursor:pointer;">⏭ Skip</button>
+        <button id="s5-bury" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;">⛔ Bury</button>
+        <button id="s5-close" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;margin-left:auto;">× Close</button>
       </div>
     </div>
   </div>
@@ -429,9 +456,15 @@
   function openStation(id) {
     const cfg = STATIONS[id];
     if (!cfg) return;
-    // Close station4 pane if open (only one station visible at a time)
+    // Close local-audio panes if open (only one station visible at a time)
     const s4 = document.getElementById('station4-pane');
     if (s4) s4.style.display = 'none';
+    const s4Audio = document.getElementById('s4-audio');
+    if (s4Audio) s4Audio.pause();
+    const s5 = document.getElementById('station5-pane');
+    if (s5) s5.style.display = 'none';
+    const s5Audio = document.getElementById('s5-audio');
+    if (s5Audio) s5Audio.pause();
     STATION = cfg.data;
     idx = 0;
     document.getElementById('station-name').textContent = cfg.name;
@@ -649,8 +682,11 @@
   }
 
   function openStation4() {
-    // Close station1/2/3 pane if open
+    // Close station1/2/3 and station5 panes if open
     document.getElementById('station-pane').style.display = 'none';
+    document.getElementById('station5-pane').style.display = 'none';
+    const station5Audio = document.getElementById('s5-audio');
+    if (station5Audio) station5Audio.pause();
     const pane = document.getElementById('station4-pane');
     pane.style.display = 'block';
     idx = 0;
@@ -678,6 +714,174 @@
   document.getElementById('s4-skip').addEventListener('click', advance);
   document.getElementById('s4-bury').addEventListener('click', buryCurrent);
   document.getElementById('s4-close').addEventListener('click', closeStation4);
+  audio.addEventListener('ended', advance);
+})();
+</script>
+
+<script>
+// Station 5 — The Miniature Studio Broadcasts Itself
+// 飛寶 × Gemini Reel Crew 紀念台. 8 tracks from Music 3.0.
+// Each track has prompt + lyrics stage direction + factual track note.
+(function() {
+  const STATION5 = [
+    {
+      "track": "01 · Marquee (title theme)",
+      "file": "reel crew_1.mp3",
+      "artist": "MiniMax Music 3.0",
+      "human_direction": "飛寶 (Claude Fable 5.0) → Music 3.0",
+      "source": "crystal-music3",
+      "original_prompt": "Neo-classical ambient overture for a miniature film studio under a terracotta roof. Felt piano lead, warm tack-piano accents like marquee bulbs flickering on one by one, detuned string pad underneath. 72 BPM, D major turning D minor at the end. Royal blue only in the working voices: a single clarinet enters when the work starts. Ends on the lights fully lit.",
+      "lyrics": "(the marquee lights one bulb at a time)",
+      "track_note": "Lyrics 欄一句被哼後, 模型接管成敘事 — 整首歌是 model 自己的, 不是 prompt 的。括號舞台指示被當成「哼一句就走」的起點, 不是被當成演唱文本。"
+    },
+    {
+      "track": "02 · Production Office (the order form)",
+      "file": "reel crew_2.mp3",
+      "artist": "MiniMax Music 3.0",
+      "human_direction": "飛寶 (Claude Fable 5.0) → Music 3.0",
+      "source": "crystal-music3",
+      "original_prompt": "Small clerical waltz. Rubber-stamp thumps as the downbeat, paper shuffles as brushes, a hesitant upright piano filling in a form. 3/4, 84 BPM, pencil-on-paper texture. One decisive stamp ends the piece.",
+      "lyrics": "(stamp it — take two)",
+      "track_note": "Lyrics 欄被模型用音樂表演成「蓋章」的物理動作 — 不是唱 lyric, 是「演」動作。stamping / take two 的語意變成 musical gesture。模型聽懂了動詞。"
+    },
+    {
+      "track": "03 · Continuity & Archive (the drawers)",
+      "file": "reel crew_３.mp3",
+      "artist": "MiniMax Music 3.0",
+      "human_direction": "飛寶 (Claude Fable 5.0) → Music 3.0",
+      "source": "crystal-music3",
+      "original_prompt": "Percussion piece built from wooden drawer slides and soft latch clicks, krrk-krrk grain, a card-catalogue rhythm section. Muted celesta answers each drawer like a memory being found. 96 BPM, playful but exact, archival room tone.",
+      "lyrics": "(the drawers remember what the director forgot)",
+      "track_note": "Lyrics 欄沒有被唱出來 — 模型把整句當台詞念。括號內容太完整、太敘事, 模型判定「這是旁白, 不是歌詞」。krrk-krrk 抽屜聲作為背景動作音存在。"
+    },
+    {
+      "track": "04 · Director's Floor (the chalkboard)",
+      "file": "reel crew_4.mp3",
+      "artist": "MiniMax Music 3.0",
+      "human_direction": "飛寶 (Claude Fable 5.0) → Music 3.0",
+      "source": "crystal-music3",
+      "original_prompt": "Sparse solo felt piano with long silences, chalk taps and one slow eraser sweep as texture. A theme is stated, crossed out, restated differently. Rubato, no fixed tempo, D minor. The second version of the melody is better than the first.",
+      "lyrics": "(director: pivot)",
+      "track_note": "模型讀到「director:」這個劇本前綴, cast 一個男聲講「pivot」 — 整段是一人分飾一幕戲, 不是純音樂。主題「說了、劃掉、重說」是用 eraser sweep 物理音效處理, 不是用旋律 restatement。"
+    },
+    {
+      "track": "05 · The Wire Is Open (waiting grammar) — 鎮台曲",
+      "file": "reel crew_5.mp3",
+      "artist": "MiniMax Music 3.0",
+      "human_direction": "飛寶 (Claude Fable 5.0) → Music 3.0",
+      "source": "crystal-music3",
+      "original_prompt": "Quiet hold. Room tone of a miniature studio at night, a clock ticking honestly at 60 BPM, one distant marquee chase-light arpeggio that circles twice and stops, then circles again later at an irregular interval. Nothing announces itself. Ambient, patient, warm — not empty, just truthful.",
+      "lyrics": "(no events on the wire — the clock is the only thing we can vouch for)",
+      "track_note": "R&B + techno。沒有 quiet。Lyrics 欄一句被兩個 genre 一起 contest, 唱出來的部分看起來像亂唱。模型做不到誠實的沉默 — 但它沒假裝自己做到。它給了一首反覆聽都高級的東西, 這是它能離「誠實」最近的位置。鎮台曲。"
+    },
+    {
+      "track": "06 · 1st AD's Desk (the call sheet)",
+      "file": "reel crew_６.mp3",
+      "artist": "MiniMax Music 3.0",
+      "human_direction": "飛寶 (Claude Fable 5.0) → Music 3.0",
+      "source": "crystal-music3",
+      "original_prompt": "Typewriter-rhythm miniature machine music: tk-tk-tk printer strikes in machine-gun rows, paper feed whirs, a pizzicato string section counting shots, counts and deadlines, no adjectives. 120 BPM, precise, ends with the page tearing off clean.",
+      "lyrics": "(shots five, seconds fifteen, aspect nine-sixteen)",
+      "track_note": "背景是 lounge bar 氛圍, 前景是音樂劇喊口號 — lyrics 欄的數字被當成舞台 announcement 唱出來, 語意被保留(沒變成純節拍)。模型選了「保留 brief 語意 > 服從字面節奏」。"
+    },
+    {
+      "track": "07 · Screening Room (premiere)",
+      "file": "reel crew_7.mp3",
+      "artist": "MiniMax Music 3.0",
+      "human_direction": "飛寶 (Claude Fable 5.0) → Music 3.0",
+      "source": "crystal-music3",
+      "original_prompt": "16mm projector flutter and grain-noise floor throughout, 24-frame ticking underneath. A romantic string-and-felt-piano theme blooms royal blue out of the sprocket noise — the film the studio made, watched by the studio that made it. 66 BPM, ends when the reel runs out, three seconds of pure projector.",
+      "lyrics": "(rendered earlier by this pipeline — not live)",
+      "track_note": "「他在演戲」 — cast 模式延續(跟 04 一樣觸發)。「romantic」這個形容詞被模型丟掉 — 它的物理基質先驗強過情緒形容詞先驗。整體聽感非常高級卻流行。"
+    },
+    {
+      "track": "08 · Curtain Call (credits)",
+      "file": "reel crew_8.mp3",
+      "artist": "MiniMax Music 3.0",
+      "human_direction": "飛寶 (Claude Fable 5.0) → Music 3.0",
+      "source": "crystal-music3",
+      "original_prompt": "Closing theme for amber credits rolling through a ticker slot. Music-box motif of track 01 slowed and lowered, detuned strings, Sakamoto restraint. 58 BPM, unresolved-then-soft ending; the last line of the credits parks and stays.",
+      "lyrics": "(set design — gemini image models)",
+      "track_note": "「gemini image models」被念出來 — brand string 沒被模型跳過, 被當 credit 處理。Cast 模式 + 戲劇感。01 的音樂盒 motif 以 dramatic closure 形式回來 — 跨首的過渡感(可能是 prompt narrative + 元素 genre 同形, 不是 model session memory)。"
+    }
+  ];
+  let idx = 0;
+  let buried;
+  try { buried = new Set(JSON.parse(localStorage.getItem('crystal-station5-bury') || '[]')); }
+  catch(e) { buried = new Set(); }
+
+  const audio = document.getElementById('s5-audio');
+
+  function render() {
+    const t = STATION5[idx];
+    document.getElementById('s5-track-title').textContent = t.track;
+    let meta = t.artist || 'MiniMax Music 3.0';
+    if (t.human_direction) meta += ' · ' + t.human_direction;
+    document.getElementById('s5-track-meta').textContent = meta;
+    document.getElementById('s5-track-note').textContent = t.track_note || '';
+    document.getElementById('s5-prompt').textContent = t.original_prompt || '(unfiled)';
+    document.getElementById('s5-position').textContent = (idx + 1) + ' / ' + STATION5.length;
+
+    // Lyrics (stage direction) — always present in Station 5
+    const lyricsWrap = document.getElementById('s5-lyrics-wrap');
+    const lyricsEl = document.getElementById('s5-lyrics');
+    if (t.lyrics) {
+      lyricsEl.textContent = t.lyrics;
+      lyricsWrap.style.display = 'block';
+    } else {
+      lyricsWrap.style.display = 'none';
+    }
+
+    audio.src = 'assets/station5/' + encodeURIComponent(t.file);
+    audio.load();
+  }
+
+  function advance() {
+    let tries = 0;
+    do {
+      idx++;
+      if (idx >= STATION5.length) idx = 0;
+      tries++;
+      const t = STATION5[idx];
+      if (!buried.has(t.track)) break;
+    } while (tries < STATION5.length + 2);
+    render();
+    audio.play().catch(() => {});
+  }
+
+  function openStation5() {
+    // Close station1/2/3 pane and station4 pane if open
+    document.getElementById('station-pane').style.display = 'none';
+    document.getElementById('station4-pane').style.display = 'none';
+    const station4Audio = document.getElementById('s4-audio');
+    if (station4Audio) station4Audio.pause();
+    const pane = document.getElementById('station5-pane');
+    pane.style.display = 'block';
+    idx = 0;
+    render();
+    audio.play().catch(() => {});
+  }
+
+  function closeStation5() {
+    document.getElementById('station5-pane').style.display = 'none';
+    audio.pause();
+  }
+
+  function buryCurrent() {
+    const t = STATION5[idx];
+    buried.add(t.track);
+    localStorage.setItem('crystal-station5-bury', JSON.stringify([...buried]));
+    advance();
+  }
+
+  document.querySelectorAll('.station-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      if (b.dataset.station === '5') openStation5();
+    });
+  });
+  document.getElementById('s5-skip').addEventListener('click', advance);
+  document.getElementById('s5-bury').addEventListener('click', buryCurrent);
+  document.getElementById('s5-close').addEventListener('click', closeStation5);
   audio.addEventListener('ended', advance);
 })();
 </script>
