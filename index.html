@@ -455,15 +455,9 @@
   function openStation(id) {
     const cfg = STATIONS[id];
     if (!cfg) return;
-    // Close local-audio panes if open (only one station visible at a time)
+    // Close station4 pane if open (only one station visible at a time)
     const s4 = document.getElementById('station4-pane');
     if (s4) s4.style.display = 'none';
-    const s4Audio = document.getElementById('s4-audio');
-    if (s4Audio) s4Audio.pause();
-    const s5 = document.getElementById('station5-pane');
-    if (s5) s5.style.display = 'none';
-    const s5Audio = document.getElementById('s5-audio');
-    if (s5Audio) s5Audio.pause();
     STATION = cfg.data;
     idx = 0;
     document.getElementById('station-name').textContent = cfg.name;
@@ -681,11 +675,8 @@
   }
 
   function openStation4() {
-    // Close station1/2/3 and station5 panes if open
+    // Close station1/2/3 pane if open
     document.getElementById('station-pane').style.display = 'none';
-    document.getElementById('station5-pane').style.display = 'none';
-    const station5Audio = document.getElementById('s5-audio');
-    if (station5Audio) station5Audio.pause();
     const pane = document.getElementById('station4-pane');
     pane.style.display = 'block';
     idx = 0;
@@ -764,14 +755,14 @@
       "track_note": "Model cast a male voice for \"director\" and spoke \"pivot\". Eraser sweep for \"crossed out\"."
     },
     {
-      "track": "05 · The Wire Is Open (waiting grammar) — 鎮台曲",
+      "track": "05 · The Wire Is Open (waiting grammar)",
       "file": "reel crew_5.mp3",
       "artist": "MiniMax Music 3.0",
       "human_direction": "飛寶 (Claude Fable 5.0) → Music 3.0",
       "source": "crystal-music3",
       "original_prompt": "Quiet hold. Room tone of a miniature studio at night, a clock ticking honestly at 60 BPM, one distant marquee chase-light arpeggio that circles twice and stops, then circles again later at an irregular interval. Nothing announces itself. Ambient, patient, warm — not empty, just truthful.",
       "lyrics": "(no events on the wire — the clock is the only thing we can vouch for)",
-      "track_note": "R&B + techno. No quiet. Model could not render honest silence, but did not pretend to. The track is the closest it could get to the prompt's intent. (Anchor track.)"
+      "track_note": "R&B + techno. No quiet. Model could not render honest silence, but did not pretend to. The track is the closest it could get to the prompt's intent."
     },
     {
       "track": "06 · 1st AD's Desk (the call sheet)",
@@ -852,8 +843,6 @@
     // Close station1/2/3 pane and station4 pane if open
     document.getElementById('station-pane').style.display = 'none';
     document.getElementById('station4-pane').style.display = 'none';
-    const station4Audio = document.getElementById('s4-audio');
-    if (station4Audio) station4Audio.pause();
     const pane = document.getElementById('station5-pane');
     pane.style.display = 'block';
     idx = 0;
