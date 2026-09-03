@@ -456,9 +456,15 @@
   function openStation(id) {
     const cfg = STATIONS[id];
     if (!cfg) return;
-    // Close station4 pane if open (only one station visible at a time)
+    // Close local-audio panes if open (only one station visible at a time)
     const s4 = document.getElementById('station4-pane');
     if (s4) s4.style.display = 'none';
+    const s4Audio = document.getElementById('s4-audio');
+    if (s4Audio) s4Audio.pause();
+    const s5 = document.getElementById('station5-pane');
+    if (s5) s5.style.display = 'none';
+    const s5Audio = document.getElementById('s5-audio');
+    if (s5Audio) s5Audio.pause();
     STATION = cfg.data;
     idx = 0;
     document.getElementById('station-name').textContent = cfg.name;
@@ -676,8 +682,11 @@
   }
 
   function openStation4() {
-    // Close station1/2/3 pane if open
+    // Close station1/2/3 and station5 panes if open
     document.getElementById('station-pane').style.display = 'none';
+    document.getElementById('station5-pane').style.display = 'none';
+    const station5Audio = document.getElementById('s5-audio');
+    if (station5Audio) station5Audio.pause();
     const pane = document.getElementById('station4-pane');
     pane.style.display = 'block';
     idx = 0;
@@ -844,6 +853,8 @@
     // Close station1/2/3 pane and station4 pane if open
     document.getElementById('station-pane').style.display = 'none';
     document.getElementById('station4-pane').style.display = 'none';
+    const station4Audio = document.getElementById('s4-audio');
+    if (station4Audio) station4Audio.pause();
     const pane = document.getElementById('station5-pane');
     pane.style.display = 'block';
     idx = 0;
