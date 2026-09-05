@@ -40,6 +40,12 @@
   .credits-block { background: rgba(0,0,0,0.03); padding: 24px 28px; border-left: 2px solid var(--rule); margin: 24px 0; font-size: 15px; line-height: 1.8; }
   .credits-block p { margin-bottom: 6px; }
   .credits-block p:last-child { margin-bottom: 0; }
+  .credits-trigger { cursor: pointer; }
+  .credits-trigger .credits-block, .credits-block.credits-trigger { transition: background 0.2s; }
+  .credits-block.credits-trigger:hover { background: rgba(0,0,0,0.05); }
+  .credits-block.credits-trigger:hover p { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+  .credit-trigger { cursor: pointer; transition: color 0.2s; }
+  .credit-trigger:hover { color: var(--accent); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
 </style>
 </head>
 <body>
@@ -955,7 +961,7 @@
 
 <h2>Credits</h2>
 
-<div class="credits-block">
+<div class="credits-block credits-trigger" data-audio="credits" title="Click to listen">
 <p>Created through a cross-model agent collaboration.</p>
 <p>Music direction and prompt — GLM-5.3 Flash</p>
 <p>Model orchestration — MiniMax M3</p>
@@ -965,27 +971,39 @@
 </div>
 
 
-<h2>Read Aloud</h2>
-
-<p>The metadata, spoken back to you. First by a synthesized voice, then by the curator's.</p>
-
-<div class="audio-frame">
-  <p class="audio-label">Synthesized voice — MiniMax Speech 2.8</p>
-  <audio controls preload="metadata" src="assets/credits.mp3"></audio>
-  <p class="audio-note">The credits, read aloud.</p>
-</div>
-
-<div class="audio-frame">
-  <p class="audio-label">In Crystal's voice — also synthesized</p>
-  <audio controls preload="metadata" src="assets/clone-thanks.mp3"></audio>
-  <p class="audio-note">A thank-you, in the curator's voice.</p>
-</div>
-
 <hr>
 
-<div class="credit">© 2026 Crystal</div>
-<div class="credit" style="margin-top: 32px; font-style: italic; letter-spacing: 0; text-transform: none;">This segment is synthesized using Speech 2.8 Voice Clone, source: 20 seconds recorded by Crystal.</div>
+<div class="credit credit-trigger" data-audio="clone-thanks" title="Click to listen">© 2026 Crystal</div>
 
+
+
+<!-- Hidden audio elements for inline triggers -->
+<audio id="audio-credits" preload="metadata" src="assets/credits.mp3"></audio>
+<audio id="audio-clone-thanks" preload="metadata" src="assets/clone-thanks.mp3"></audio>
+
+<script>
+// Inline audio trigger: click credits-block to hear TTS, click footer to hear clone
+document.addEventListener('DOMContentLoaded', function() {
+  const triggers = document.querySelectorAll('[data-audio]');
+  triggers.forEach(function(el) {
+    el.addEventListener('click', function() {
+      const audio = document.getElementById('audio-' + el.dataset.audio);
+      if (!audio) return;
+      // Stop other playing audio first (so only one plays at a time)
+      document.querySelectorAll('audio').forEach(function(a) {
+        if (a !== audio && !a.paused) {
+          a.pause();
+          a.currentTime = 0;
+        }
+      });
+      audio.currentTime = 0;
+      audio.play().catch(function(err) {
+        console.log('Audio play failed:', err);
+      });
+    });
+  });
+});
+</script>
 
 </body>
 </html>
