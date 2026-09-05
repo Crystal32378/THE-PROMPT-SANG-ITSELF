@@ -34,6 +34,8 @@
   .audio-frame { margin: 32px 0 8px; padding: 24px; background: rgba(0,0,0,0.03); border: 1px solid var(--rule); text-align: center; }
   .audio-frame audio { width: 100%; margin-top: 12px; }
   .audio-note { font-size: 13px; color: var(--muted); margin-top: 12px; font-style: italic; }
+  .audio-label { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+
   .credit { margin-top: 96px; font-size: 13px; color: var(--muted); letter-spacing: 1px; }
   .credits-block { background: rgba(0,0,0,0.03); padding: 24px 28px; border-left: 2px solid var(--rule); margin: 24px 0; font-size: 15px; line-height: 1.8; }
   .credits-block p { margin-bottom: 6px; }
@@ -962,7 +964,28 @@
 <p>Human creative direction and artifact discovery — Crystal Chang</p>
 </div>
 
+
+<h2>Read Aloud</h2>
+
+<p>The metadata, spoken back to you. First by a synthesized voice, then by the curator's.</p>
+
+<div class="audio-frame">
+  <p class="audio-label">Synthesized voice — MiniMax Speech 2.8</p>
+  <audio controls preload="metadata" src="assets/credits.mp3"></audio>
+  <p class="audio-note">The credits, read aloud.</p>
+</div>
+
+<div class="audio-frame">
+  <p class="audio-label">In Crystal's voice — also synthesized</p>
+  <audio controls preload="metadata" src="assets/clone-thanks.mp3"></audio>
+  <p class="audio-note">A thank-you, in the curator's voice.</p>
+</div>
+
+<hr>
+
 <div class="credit">© 2026 Crystal</div>
+<p class="audio-note" style="text-align: center; margin-top: 48px; max-width: 480px; margin-left: auto; margin-right: auto;">This segment is synthesized using Speech 2.8 Voice Clone, source: 20 seconds recorded by Crystal.</p>
+
 
 </body>
 </html>
