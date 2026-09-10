@@ -47,6 +47,8 @@
   .credit-trigger { cursor: pointer; transition: color 0.2s; }
   .credit-trigger:hover { color: var(--accent); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
   .tech-note { font-size: 11px; color: var(--muted); margin-top: 12px; font-style: italic; letter-spacing: 0; text-transform: none; }
+  .video-prologue { margin: 48px 0 32px; border: 1px solid var(--rule); }
+  .video-prologue video { display: block; width: 100%; height: auto; }
 </style>
 </head>
 <body>
@@ -60,6 +62,10 @@
 <p>What was meant to be an instruction became part of the artwork.</p>
 
 <hr>
+
+<div class="video-prologue">
+  <video src="assets/prologue.mp4" autoplay muted loop playsinline preload="metadata"></video>
+</div>
 
 <div class="audio-frame" id="audio-block">
   <div id="audio-frame-original">
