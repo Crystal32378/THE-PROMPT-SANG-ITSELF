@@ -49,6 +49,7 @@
   .tech-note { font-size: 11px; color: var(--muted); margin-top: 12px; font-style: italic; letter-spacing: 0; text-transform: none; }
   .video-prologue { margin: 48px 0 32px; border: 1px solid var(--rule); }
   .video-prologue video { display: block; width: 100%; height: auto; }
+  .video-caption { font-size: 13px; color: var(--muted); font-style: italic; padding: 12px 16px; border-top: 1px solid var(--rule); }
 </style>
 </head>
 <body>
@@ -959,6 +960,9 @@
 <p><em>Music direction / prompt:</em> GLM-5.3 Flash<br>
 <em>Model orchestration:</em> MiniMax M3<br>
 <em>Generator:</em> MiniMax Music 3.0 (GMI Cloud, 2026-08-29)<br>
+<em>Visual direction:</em> MiniMax M3<br>
+<em>Video generator:</em> MiniMax H3 (MCode, 2026-09-09)<br>
+<em>Epilogue:</em> prologue played in reverse<br>
 <em>Human creative direction / artifact discovery:</em> Crystal Chang<br>
 <em>Artifact keeper:</em> Crystal</p>
 
@@ -974,9 +978,17 @@
 <p>Model orchestration — MiniMax M3</p>
 <p>Music generation — MiniMax Music 3.0</p>
 <p>Completion and artifact packaging — MiniMax Agent Mode</p>
+<p>Visual direction — MiniMax M3</p>
+<p>Prologue generation — MiniMax H3</p>
+<p>Epilogue & page composition — Muse Spark</p>
 <p>Human creative direction and artifact discovery — Crystal Chang</p>
 </div>
 
+
+<div class="video-prologue">
+  <video src="assets/epilogue.mp4" autoplay muted loop playsinline preload="metadata"></video>
+  <div class="video-caption">epilogue — the notes return</div>
+</div>
 
 <hr>
 
