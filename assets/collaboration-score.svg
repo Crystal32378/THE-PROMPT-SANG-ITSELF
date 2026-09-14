@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" width="1200" height="720" font-family="'Iowan Old Style','Palatino Linotype',Georgia,serif" role="img" aria-labelledby="title desc">
+  <title id="title">Collaboration chain for The Prompt Sang Itself, drawn as a conductor score</title>
+  <desc id="desc">A horizontal conductor score diagram. Five parallel voices run across time: Concept/Text, Audio, Visual, Web, Measurement. Eight handoff moments between Crystal, GLM-5.3 Flash, Music 3.0, M3, H3, Muse Spark, Fable 5.0, and Opus 5. A golden pulsing note marks the surprise — the moment Music 3.0 sang its own lyrics field instead of rendering the structure directions as non-vocal cues. That single deviation is the artifact. Phases along the timeline: brief, prompt, render, surprise, visualize, publish.</desc>
+  <!-- background -->
+  <rect width="1200" height="720" fill="#f5f1ea"/>
+
+  <!-- header -->
+  <text x="60" y="50" font-size="22" fill="#2a2622" font-weight="400">Collaboration Chain</text>
+  <text x="60" y="74" font-size="13" fill="#7a716a" letter-spacing="2">THE PROMPT SANG ITSELF — MCODE × H3 × MUSIC 3.0</text>
+
+  <line x1="60" y1="94" x2="1140" y2="94" stroke="#d4cbbd" stroke-width="1"/>
+
+  <!-- timeline axis labels (left side) -->
+  <text x="60" y="135" font-size="10" fill="#7a716a" letter-spacing="2">BRIEF</text>
+  <text x="60" y="195" font-size="10" fill="#7a716a" letter-spacing="2">PROMPT</text>
+  <text x="60" y="255" font-size="10" fill="#7a716a" letter-spacing="2">RENDER</text>
+  <text x="60" y="315" font-size="10" fill="#7a716a" letter-spacing="2">SURPRISE</text>
+  <text x="60" y="375" font-size="10" fill="#7a716a" letter-spacing="2">VISUALIZE</text>
+  <text x="60" y="435" font-size="10" fill="#7a716a" letter-spacing="2">PUBLISH</text>
+
+  <!-- vertical phase markers -->
+  <line x1="170" y1="110" x2="170" y2="630" stroke="#d4cbbd" stroke-width="0.5" stroke-dasharray="2 4"/>
+  <line x1="310" y1="110" x2="310" y2="630" stroke="#d4cbbd" stroke-width="0.5" stroke-dasharray="2 4"/>
+  <line x1="450" y1="110" x2="450" y2="630" stroke="#d4cbbd" stroke-width="0.5" stroke-dasharray="2 4"/>
+  <line x1="590" y1="110" x2="590" y2="630" stroke="#d4cbbd" stroke-width="0.5" stroke-dasharray="2 4"/>
+  <line x1="730" y1="110" x2="730" y2="630" stroke="#d4cbbd" stroke-width="0.5" stroke-dasharray="2 4"/>
+  <line x1="870" y1="110" x2="870" y2="630" stroke="#d4cbbd" stroke-width="0.5" stroke-dasharray="2 4"/>
+
+  <!-- 5 horizontal staves -->
+  <!-- Concept / Text -->
+  <text x="170" y="135" font-size="10" fill="#7a716a">Crystal</text>
+  <text x="310" y="135" font-size="10" fill="#7a716a">GLM-5.3 Flash</text>
+  <text x="730" y="135" font-size="10" fill="#7a716a">Fable 5.0</text>
+  <text x="870" y="135" font-size="10" fill="#7a716a">Crystal approves</text>
+  <circle cx="170" cy="125" r="5" fill="#8b6f47"/>
+  <circle cx="310" cy="125" r="5" fill="#8b6f47"/>
+  <circle cx="730" cy="125" r="5" fill="#8b6f47"/>
+  <circle cx="870" cy="125" r="5" fill="#8b6f47"/>
+
+  <!-- Audio -->
+  <text x="450" y="195" font-size="10" fill="#7a716a">Music 3.0</text>
+  <circle cx="450" cy="185" r="5" fill="#8b6f47"/>
+  <!-- The surprise: golden accent -->
+  <text x="510" y="195" font-size="11" fill="#8b6f47" font-style="italic">"sang its own lyrics"</text>
+  <circle cx="510" cy="185" r="9" fill="none" stroke="#d4a04a" stroke-width="2" opacity="0.6">
+    <animate attributeName="r" values="9;18;9" dur="2.4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.6;0;0.6" dur="2.4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="510" cy="185" r="5" fill="#d4a04a"/>
+
+  <!-- Visual -->
+  <text x="590" y="255" font-size="10" fill="#7a716a">M3</text>
+  <text x="650" y="255" font-size="10" fill="#7a716a">H3 → 15s, 2K</text>
+  <circle cx="590" cy="245" r="5" fill="#8b6f47"/>
+  <circle cx="650" cy="245" r="5" fill="#8b6f47"/>
+
+  <!-- Web -->
+  <text x="730" y="315" font-size="10" fill="#7a716a">Muse Spark</text>
+  <circle cx="730" cy="305" r="5" fill="#8b6f47"/>
+
+  <!-- Measurement -->
+  <text x="800" y="375" font-size="10" fill="#7a716a">Opus 5</text>
+  <circle cx="800" cy="365" r="5" fill="#8b6f47"/>
+
+  <!-- handoff arrows (vertical connections) -->
+  <path d="M 170 130 Q 240 150 310 170" fill="none" stroke="#8b6f47" stroke-width="0.8" opacity="0.5"/>
+  <path d="M 310 170 L 450 180" fill="none" stroke="#8b6f47" stroke-width="0.8" opacity="0.5"/>
+  <path d="M 510 190 Q 550 220 590 240" fill="none" stroke="#8b6f47" stroke-width="0.8" opacity="0.5"/>
+  <path d="M 590 245 L 650 245" fill="none" stroke="#8b6f47" stroke-width="0.8" opacity="0.5"/>
+  <path d="M 650 250 Q 690 280 730 300" fill="none" stroke="#8b6f47" stroke-width="0.8" opacity="0.5"/>
+  <path d="M 730 310 L 800 360" fill="none" stroke="#8b6f47" stroke-width="0.8" opacity="0.5"/>
+  <path d="M 800 370 Q 870 480 870 600" fill="none" stroke="#8b6f47" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- bottom rule -->
+  <line x1="60" y1="640" x2="1140" y2="640" stroke="#d4cbbd" stroke-width="1"/>
+
+  <!-- legend -->
+  <text x="60" y="668" font-size="11" fill="#2a2622" letter-spacing="2">LEGEND</text>
+  <circle cx="160" cy="664" r="5" fill="#8b6f47"/>
+  <text x="175" y="668" font-size="11" fill="#7a716a">handoff / agent voice enters</text>
+  <circle cx="370" cy="664" r="5" fill="#d4a04a"/>
+  <text x="385" y="668" font-size="11" fill="#7a716a">the surprise — model sang its own instruction</text>
+
+  <!-- footer -->
+  <text x="60" y="700" font-size="10" fill="#7a716a" font-style="italic">provenance — recorded 2026-09-12 · THE-PROMPT-SANG-ITSELF artifact · crystal32378.github.io</text>
+</svg>
