@@ -1,175 +1,158 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 540" width="1400" height="540" font-family="'Iowan Old Style','Palatino Linotype',Georgia,serif" role="img" aria-labelledby="fs-title fs-desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 660" width="1100" height="660" font-family="'Iowan Old Style','Palatino Linotype',Georgia,serif" role="img" aria-labelledby="fs-title fs-desc">
   <title id="fs-title">Eight frames of the chain — a filmstrip narrative for The Prompt Sang Itself</title>
-  <desc id="fs-desc">Eight numbered frames laid out like a filmstrip, each capturing one handoff in the chain. 01 Crystal types the brief "Sakamoto couture". 02 GLM-5.3 Flash writes the music prompt. 03 Music 3.0 renders the score. 04 the surprise — the model sang its own lyrics field instead of treating them as structure directions. 05 M3 directs H3 with a three-shot prompt architecture. 06 H3 renders the 15-second visual at 2K, 16:9, with native audio. 07 Muse Spark reverses the clip into an epilogue and embeds prologue plus epilogue in the artifact page, with og meta and poster frame. 08 Opus 5 measures the audio and Crystal publishes the artifact. Frame 04 is highlighted with a gold border as the centerpiece.</desc>
-  <!-- background -->
-  <rect width="1400" height="540" fill="#f5f1ea"/>
+  <desc id="fs-desc">Eight numbered frames laid out like a filmstrip in a four-by-two grid, each capturing one handoff in the chain. 01 Crystal types the brief "Sakamoto couture". 02 GLM-5.3 Flash writes the music prompt. 03 Music 3.0 renders the score. 04 the surprise — the model sang its own lyrics field instead of treating them as structure directions. 05 M3 directs H3 with a three-shot prompt architecture. 06 H3 renders the 15-second visual at 2K, 16:9, with native audio. 07 Muse Spark reverses the clip into an epilogue and embeds prologue plus epilogue in the artifact page, with og meta and poster frame. 08 Opus 5 measures the audio and Crystal publishes the artifact. Frame 04 is highlighted with a gold border as the centerpiece.</desc>
+
+  <rect width="1100" height="660" fill="#f5f1ea"/>
 
   <!-- header -->
-  <text x="60" y="50" font-size="22" fill="#2a2622" font-weight="400">Eight Frames of the Chain</text>
-  <text x="60" y="74" font-size="13" fill="#7a716a" letter-spacing="2">A SHORT FILM OF WHO SAID WHAT TO WHOM</text>
+  <text x="40" y="44" font-size="24" fill="#2a2622" font-weight="400">Eight Frames of the Chain</text>
+  <text x="40" y="68" font-size="14" fill="#7a716a" letter-spacing="2">A SHORT FILM OF WHO SAID WHAT TO WHOM</text>
 
-  <line x1="60" y1="94" x2="1340" y2="94" stroke="#d4cbbd" stroke-width="1"/>
+  <line x1="40" y1="86" x2="1060" y2="86" stroke="#d4cbbd" stroke-width="1"/>
 
-  <!-- 8 frames in a single row, each 155x340 with 16px gap, starting x=60 -->
+  <!-- 4x2 grid, each frame 245x230, 20px gap, start x=40 y=110 -->
 
   <!-- frame 1: Crystal types the brief -->
-  <g transform="translate(60, 110)">
-    <rect x="0" y="0" width="155" height="340" fill="none" stroke="#d4cbbd" stroke-width="1"/>
-    <text x="78" y="22" font-size="9" fill="#7a716a" letter-spacing="2" text-anchor="middle">01</text>
+  <g transform="translate(40, 110)">
+    <rect x="0" y="0" width="245" height="230" fill="none" stroke="#d4cbbd" stroke-width="1"/>
+    <text x="20" y="30" font-size="13" fill="#7a716a" letter-spacing="2">01</text>
     <!-- keyboard glyph -->
-    <rect x="35" y="55" width="85" height="50" rx="2" fill="none" stroke="#2a2622" stroke-width="1"/>
-    <line x1="35" y1="70" x2="120" y2="70" stroke="#2a2622" stroke-width="0.5"/>
-    <line x1="35" y1="85" x2="120" y2="85" stroke="#2a2622" stroke-width="0.5"/>
-    <circle cx="78" cy="135" r="14" fill="none" stroke="#8b6f47" stroke-width="1"/>
-    <text x="78" y="139" font-size="14" fill="#8b6f47" text-anchor="middle" font-style="italic">S</text>
-    <text x="78" y="200" font-size="11" fill="#2a2622" text-anchor="middle">Crystal types</text>
-    <text x="78" y="218" font-size="10" fill="#7a716a" text-anchor="middle" font-style="italic">"Sakamoto couture"</text>
-    <text x="78" y="270" font-size="9" fill="#7a716a" text-anchor="middle" letter-spacing="1">HUMAN · BRIEF</text>
-    <text x="78" y="305" font-size="9" fill="#7a716a" text-anchor="middle">@crystalchang</text>
+    <rect x="65" y="55" width="115" height="60" rx="2" fill="none" stroke="#2a2622" stroke-width="1"/>
+    <line x1="65" y1="75" x2="180" y2="75" stroke="#2a2622" stroke-width="0.5"/>
+    <line x1="65" y1="95" x2="180" y2="95" stroke="#2a2622" stroke-width="0.5"/>
+    <circle cx="122" cy="135" r="16" fill="none" stroke="#8b6f47" stroke-width="1.2"/>
+    <text x="122" y="142" font-size="20" fill="#8b6f47" text-anchor="middle" font-style="italic">S</text>
+    <text x="122" y="180" font-size="15" fill="#2a2622" text-anchor="middle" font-weight="400">Crystal types</text>
+    <text x="122" y="200" font-size="13" fill="#7a716a" text-anchor="middle" font-style="italic">"Sakamoto couture"</text>
+    <text x="122" y="220" font-size="11" fill="#7a716a" text-anchor="middle" letter-spacing="1">HUMAN · BRIEF</text>
   </g>
 
-  <!-- frame 2: GLM-5.3 Flash receives instruction -->
-  <g transform="translate(231, 110)">
-    <rect x="0" y="0" width="155" height="340" fill="none" stroke="#d4cbbd" stroke-width="1"/>
-    <text x="78" y="22" font-size="9" fill="#7a716a" letter-spacing="2" text-anchor="middle">02</text>
+  <!-- frame 2: GLM-5.3 Flash -->
+  <g transform="translate(305, 110)">
+    <rect x="0" y="0" width="245" height="230" fill="none" stroke="#d4cbbd" stroke-width="1"/>
+    <text x="20" y="30" font-size="13" fill="#7a716a" letter-spacing="2">02</text>
     <!-- text block glyph -->
-    <rect x="30" y="50" width="95" height="80" fill="none" stroke="#2a2622" stroke-width="1"/>
-    <line x1="40" y1="65" x2="115" y2="65" stroke="#2a2622" stroke-width="0.5"/>
-    <line x1="40" y1="78" x2="115" y2="78" stroke="#2a2622" stroke-width="0.5"/>
-    <line x1="40" y1="91" x2="115" y2="91" stroke="#2a2622" stroke-width="0.5"/>
-    <line x1="40" y1="104" x2="100" y2="104" stroke="#2a2622" stroke-width="0.5"/>
-    <line x1="40" y1="117" x2="115" y2="117" stroke="#2a2622" stroke-width="0.5"/>
-    <text x="78" y="170" font-size="11" fill="#2a2622" text-anchor="middle">GLM-5.3 Flash</text>
-    <text x="78" y="188" font-size="10" fill="#7a716a" text-anchor="middle" font-style="italic">writes music prompt</text>
-    <text x="78" y="240" font-size="9" fill="#7a716a" text-anchor="middle" letter-spacing="1">AGENT · PROMPT</text>
-    <text x="78" y="275" font-size="9" fill="#7a716a" text-anchor="middle">Zhipu · GLM</text>
-    <text x="78" y="305" font-size="9" fill="#7a716a" text-anchor="middle">felt piano · 70 BPM · Dm</text>
+    <rect x="60" y="50" width="125" height="85" fill="none" stroke="#2a2622" stroke-width="1"/>
+    <line x1="72" y1="68" x2="173" y2="68" stroke="#2a2622" stroke-width="0.5"/>
+    <line x1="72" y1="83" x2="173" y2="83" stroke="#2a2622" stroke-width="0.5"/>
+    <line x1="72" y1="98" x2="173" y2="98" stroke="#2a2622" stroke-width="0.5"/>
+    <line x1="72" y1="113" x2="155" y2="113" stroke="#2a2622" stroke-width="0.5"/>
+    <line x1="72" y1="128" x2="173" y2="128" stroke="#2a2622" stroke-width="0.5"/>
+    <text x="122" y="172" font-size="15" fill="#2a2622" text-anchor="middle" font-weight="400">GLM-5.3 Flash</text>
+    <text x="122" y="192" font-size="13" fill="#7a716a" text-anchor="middle" font-style="italic">writes music prompt</text>
+    <text x="122" y="218" font-size="11" fill="#7a716a" text-anchor="middle" letter-spacing="1">AGENT · PROMPT</text>
   </g>
 
-  <!-- frame 3: Music 3.0 generates -->
-  <g transform="translate(402, 110)">
-    <rect x="0" y="0" width="155" height="340" fill="none" stroke="#d4cbbd" stroke-width="1"/>
-    <text x="78" y="22" font-size="9" fill="#7a716a" letter-spacing="2" text-anchor="middle">03</text>
+  <!-- frame 3: Music 3.0 -->
+  <g transform="translate(570, 110)">
+    <rect x="0" y="0" width="245" height="230" fill="none" stroke="#d4cbbd" stroke-width="1"/>
+    <text x="20" y="30" font-size="13" fill="#7a716a" letter-spacing="2">03</text>
     <!-- music staff glyph -->
-    <line x1="20" y1="60" x2="135" y2="60" stroke="#2a2622" stroke-width="0.5"/>
-    <line x1="20" y1="72" x2="135" y2="72" stroke="#2a2622" stroke-width="0.5"/>
-    <line x1="20" y1="84" x2="135" y2="84" stroke="#2a2622" stroke-width="0.5"/>
-    <line x1="20" y1="96" x2="135" y2="96" stroke="#2a2622" stroke-width="0.5"/>
-    <line x1="20" y1="108" x2="135" y2="108" stroke="#2a2622" stroke-width="0.5"/>
-    <ellipse cx="50" cy="84" rx="6" ry="4" fill="#2a2622"/>
-    <line x1="56" y1="84" x2="56" y2="60" stroke="#2a2622" stroke-width="1"/>
-    <ellipse cx="80" cy="78" rx="6" ry="4" fill="#2a2622"/>
-    <line x1="86" y1="78" x2="86" y2="54" stroke="#2a2622" stroke-width="1"/>
-    <ellipse cx="110" cy="90" rx="6" ry="4" fill="#2a2622"/>
-    <line x1="116" y1="90" x2="116" y2="66" stroke="#2a2622" stroke-width="1"/>
-    <text x="78" y="170" font-size="11" fill="#2a2622" text-anchor="middle">Music 3.0</text>
-    <text x="78" y="188" font-size="10" fill="#7a716a" text-anchor="middle" font-style="italic">renders the score</text>
-    <text x="78" y="240" font-size="9" fill="#7a716a" text-anchor="middle" letter-spacing="1">MODEL · GENERATION</text>
-    <text x="78" y="275" font-size="9" fill="#7a716a" text-anchor="middle">MiniMax Music 3.0</text>
-    <text x="78" y="305" font-size="9" fill="#7a716a" text-anchor="middle">GMI Cloud · 2026-08-29</text>
+    <line x1="50" y1="55" x2="195" y2="55" stroke="#2a2622" stroke-width="0.5"/>
+    <line x1="50" y1="70" x2="195" y2="70" stroke="#2a2622" stroke-width="0.5"/>
+    <line x1="50" y1="85" x2="195" y2="85" stroke="#2a2622" stroke-width="0.5"/>
+    <line x1="50" y1="100" x2="195" y2="100" stroke="#2a2622" stroke-width="0.5"/>
+    <line x1="50" y1="115" x2="195" y2="115" stroke="#2a2622" stroke-width="0.5"/>
+    <ellipse cx="80" cy="85" rx="8" ry="5" fill="#2a2622"/>
+    <line x1="88" y1="85" x2="88" y2="55" stroke="#2a2622" stroke-width="1.2"/>
+    <ellipse cx="120" cy="78" rx="8" ry="5" fill="#2a2622"/>
+    <line x1="128" y1="78" x2="128" y2="48" stroke="#2a2622" stroke-width="1.2"/>
+    <ellipse cx="160" cy="92" rx="8" ry="5" fill="#2a2622"/>
+    <line x1="168" y1="92" x2="168" y2="62" stroke="#2a2622" stroke-width="1.2"/>
+    <text x="122" y="160" font-size="15" fill="#2a2622" text-anchor="middle" font-weight="400">Music 3.0</text>
+    <text x="122" y="180" font-size="13" fill="#7a716a" text-anchor="middle" font-style="italic">renders the score</text>
+    <text x="122" y="218" font-size="11" fill="#7a716a" text-anchor="middle" letter-spacing="1">MODEL · GENERATION</text>
   </g>
 
-  <!-- frame 4: SURPRISE — lyrics were sung -->
-  <g transform="translate(573, 110)">
-    <rect x="0" y="0" width="155" height="340" fill="none" stroke="#d4a04a" stroke-width="1.5"/>
-    <text x="78" y="22" font-size="9" fill="#8b6f47" letter-spacing="2" text-anchor="middle">04</text>
-    <!-- golden accent: radiating dots -->
-    <circle cx="78" cy="80" r="14" fill="none" stroke="#d4a04a" stroke-width="2"/>
-    <circle cx="78" cy="80" r="22" fill="none" stroke="#d4a04a" stroke-width="0.5" opacity="0.5"/>
-    <circle cx="78" cy="80" r="6" fill="#d4a04a"/>
-    <!-- radiating lines -->
-    <line x1="78" y1="50" x2="78" y2="42" stroke="#d4a04a" stroke-width="1"/>
-    <line x1="78" y1="110" x2="78" y2="118" stroke="#d4a04a" stroke-width="1"/>
-    <line x1="48" y1="80" x2="40" y2="80" stroke="#d4a04a" stroke-width="1"/>
-    <line x1="108" y1="80" x2="116" y2="80" stroke="#d4a04a" stroke-width="1"/>
-    <text x="78" y="170" font-size="11" fill="#8b6f47" text-anchor="middle" font-style="italic">the surprise</text>
-    <text x="78" y="188" font-size="10" fill="#2a2622" text-anchor="middle" font-style="italic">"lyrics were sung"</text>
-    <text x="78" y="240" font-size="9" fill="#8b6f47" text-anchor="middle" letter-spacing="1">MODEL · DEVIATION</text>
-    <text x="78" y="275" font-size="9" fill="#7a716a" text-anchor="middle">instruction</text>
-    <text x="78" y="290" font-size="9" fill="#7a716a" text-anchor="middle">→</text>
-    <text x="78" y="305" font-size="9" fill="#7a716a" text-anchor="middle">artifact</text>
+  <!-- frame 4: SURPRISE (gold) -->
+  <g transform="translate(835, 110)">
+    <rect x="0" y="0" width="245" height="230" fill="none" stroke="#d4a04a" stroke-width="2"/>
+    <text x="20" y="30" font-size="13" fill="#8b6f47" letter-spacing="2">04</text>
+    <!-- gold burst -->
+    <circle cx="122" cy="85" r="18" fill="none" stroke="#d4a04a" stroke-width="2.5"/>
+    <circle cx="122" cy="85" r="28" fill="none" stroke="#d4a04a" stroke-width="0.8" opacity="0.5"/>
+    <circle cx="122" cy="85" r="8" fill="#d4a04a"/>
+    <line x1="122" y1="55" x2="122" y2="46" stroke="#d4a04a" stroke-width="1.2"/>
+    <line x1="122" y1="115" x2="122" y2="124" stroke="#d4a04a" stroke-width="1.2"/>
+    <line x1="92" y1="85" x2="83" y2="85" stroke="#d4a04a" stroke-width="1.2"/>
+    <line x1="152" y1="85" x2="161" y2="85" stroke="#d4a04a" stroke-width="1.2"/>
+    <text x="122" y="160" font-size="15" fill="#8b6f47" text-anchor="middle" font-style="italic">the surprise</text>
+    <text x="122" y="180" font-size="13" fill="#2a2622" text-anchor="middle" font-style="italic">"lyrics were sung"</text>
+    <text x="122" y="218" font-size="11" fill="#8b6f47" text-anchor="middle" letter-spacing="1">MODEL · DEVIATION</text>
   </g>
 
-  <!-- frame 5: M3 writes H3 prompt -->
-  <g transform="translate(744, 110)">
-    <rect x="0" y="0" width="155" height="340" fill="none" stroke="#d4cbbd" stroke-width="1"/>
-    <text x="78" y="22" font-size="9" fill="#7a716a" letter-spacing="2" text-anchor="middle">05</text>
+  <!-- frame 5: M3 -->
+  <g transform="translate(40, 360)">
+    <rect x="0" y="0" width="245" height="230" fill="none" stroke="#d4cbbd" stroke-width="1"/>
+    <text x="20" y="30" font-size="13" fill="#7a716a" letter-spacing="2">05</text>
     <!-- pen + paper glyph -->
-    <rect x="30" y="55" width="95" height="70" fill="none" stroke="#2a2622" stroke-width="1"/>
-    <line x1="50" y1="70" x2="105" y2="70" stroke="#2a2622" stroke-width="0.5"/>
-    <line x1="50" y1="83" x2="105" y2="83" stroke="#2a2622" stroke-width="0.5"/>
-    <line x1="50" y1="96" x2="90" y2="96" stroke="#2a2622" stroke-width="0.5"/>
-    <line x1="50" y1="109" x2="105" y2="109" stroke="#2a2622" stroke-width="0.5"/>
-    <line x1="105" y1="55" x2="125" y2="40" stroke="#8b6f47" stroke-width="1.5"/>
-    <polygon points="125,40 130,38 128,43" fill="#8b6f47"/>
-    <text x="78" y="170" font-size="11" fill="#2a2622" text-anchor="middle">M3 directs H3</text>
-    <text x="78" y="188" font-size="10" fill="#7a716a" text-anchor="middle" font-style="italic">3-shot prompt architecture</text>
-    <text x="78" y="240" font-size="9" fill="#7a716a" text-anchor="middle" letter-spacing="1">AGENT · DIRECTION</text>
-    <text x="78" y="275" font-size="9" fill="#7a716a" text-anchor="middle">MiniMax M3</text>
-    <text x="78" y="305" font-size="9" fill="#7a716a" text-anchor="middle">Sakamoto editorial · 24fps</text>
+    <rect x="60" y="50" width="125" height="75" fill="none" stroke="#2a2622" stroke-width="1"/>
+    <line x1="72" y1="68" x2="173" y2="68" stroke="#2a2622" stroke-width="0.5"/>
+    <line x1="72" y1="83" x2="173" y2="83" stroke="#2a2622" stroke-width="0.5"/>
+    <line x1="72" y1="98" x2="148" y2="98" stroke="#2a2622" stroke-width="0.5"/>
+    <line x1="72" y1="113" x2="173" y2="113" stroke="#2a2622" stroke-width="0.5"/>
+    <line x1="172" y1="50" x2="195" y2="35" stroke="#8b6f47" stroke-width="2"/>
+    <polygon points="195,35 200,33 198,38" fill="#8b6f47"/>
+    <text x="122" y="160" font-size="15" fill="#2a2622" text-anchor="middle" font-weight="400">M3 directs H3</text>
+    <text x="122" y="180" font-size="13" fill="#7a716a" text-anchor="middle" font-style="italic">3-shot prompt architecture</text>
+    <text x="122" y="218" font-size="11" fill="#7a716a" text-anchor="middle" letter-spacing="1">AGENT · DIRECTION</text>
   </g>
 
-  <!-- frame 6: H3 generates 15s -->
-  <g transform="translate(915, 110)">
-    <rect x="0" y="0" width="155" height="340" fill="none" stroke="#d4cbbd" stroke-width="1"/>
-    <text x="78" y="22" font-size="9" fill="#7a716a" letter-spacing="2" text-anchor="middle">06</text>
+  <!-- frame 6: H3 -->
+  <g transform="translate(305, 360)">
+    <rect x="0" y="0" width="245" height="230" fill="none" stroke="#d4cbbd" stroke-width="1"/>
+    <text x="20" y="30" font-size="13" fill="#7a716a" letter-spacing="2">06</text>
     <!-- film strip glyph -->
-    <rect x="25" y="50" width="105" height="60" fill="#0e0a08"/>
-    <rect x="28" y="56" width="20" height="48" fill="#d4a04a" opacity="0.15"/>
-    <rect x="51" y="56" width="20" height="48" fill="#d4a04a" opacity="0.15"/>
-    <rect x="74" y="56" width="20" height="48" fill="#d4a04a" opacity="0.15"/>
-    <rect x="97" y="56" width="20" height="48" fill="#d4a04a" opacity="0.15"/>
-    <circle cx="38" cy="80" r="3" fill="#d4a04a"/>
-    <circle cx="64" cy="80" r="2.5" fill="#d4a04a"/>
-    <circle cx="89" cy="80" r="3.5" fill="#d4a04a"/>
-    <circle cx="111" cy="80" r="2" fill="#d4a04a"/>
-    <text x="78" y="170" font-size="11" fill="#2a2622" text-anchor="middle">H3 renders 15s</text>
-    <text x="78" y="188" font-size="10" fill="#7a716a" text-anchor="middle" font-style="italic">2K · 16:9 · native audio</text>
-    <text x="78" y="240" font-size="9" fill="#7a716a" text-anchor="middle" letter-spacing="1">MODEL · VIDEO</text>
-    <text x="78" y="275" font-size="9" fill="#7a716a" text-anchor="middle">MiniMax H3</text>
-    <text x="78" y="305" font-size="9" fill="#7a716a" text-anchor="middle">MCode · 2026-09-09</text>
+    <rect x="55" y="50" width="135" height="75" fill="#0e0a08"/>
+    <rect x="58" y="56" width="26" height="63" fill="#d4a04a" opacity="0.18"/>
+    <rect x="87" y="56" width="26" height="63" fill="#d4a04a" opacity="0.18"/>
+    <rect x="116" y="56" width="26" height="63" fill="#d4a04a" opacity="0.18"/>
+    <rect x="145" y="56" width="26" height="63" fill="#d4a04a" opacity="0.18"/>
+    <circle cx="71" cy="85" r="4" fill="#d4a04a"/>
+    <circle cx="100" cy="85" r="3.5" fill="#d4a04a"/>
+    <circle cx="129" cy="85" r="4.5" fill="#d4a04a"/>
+    <circle cx="158" cy="85" r="3" fill="#d4a04a"/>
+    <text x="122" y="160" font-size="15" fill="#2a2622" text-anchor="middle" font-weight="400">H3 renders 15s</text>
+    <text x="122" y="180" font-size="13" fill="#7a716a" text-anchor="middle" font-style="italic">2K · 16:9 · native audio</text>
+    <text x="122" y="218" font-size="11" fill="#7a716a" text-anchor="middle" letter-spacing="1">MODEL · VIDEO</text>
   </g>
 
-  <!-- frame 7: Muse Spark reverses + embeds -->
-  <g transform="translate(1086, 110)">
-    <rect x="0" y="0" width="155" height="340" fill="none" stroke="#d4cbbd" stroke-width="1"/>
-    <text x="78" y="22" font-size="9" fill="#7a716a" letter-spacing="2" text-anchor="middle">07</text>
-    <!-- arrow + page glyph -->
-    <rect x="35" y="55" width="85" height="100" fill="none" stroke="#2a2622" stroke-width="1"/>
-    <line x1="45" y1="75" x2="110" y2="75" stroke="#2a2622" stroke-width="0.5"/>
-    <line x1="45" y1="90" x2="100" y2="90" stroke="#2a2622" stroke-width="0.5"/>
-    <line x1="45" y1="105" x2="110" y2="105" stroke="#2a2622" stroke-width="0.5"/>
-    <line x1="45" y1="120" x2="95" y2="120" stroke="#2a2622" stroke-width="0.5"/>
-    <line x1="45" y1="135" x2="110" y2="135" stroke="#2a2622" stroke-width="0.5"/>
-    <!-- reverse arrow overlay -->
-    <path d="M 50 175 Q 78 165 106 175" fill="none" stroke="#8b6f47" stroke-width="1.2"/>
-    <polygon points="50,175 56,171 56,179" fill="#8b6f47"/>
-    <text x="78" y="200" font-size="9" fill="#8b6f47" text-anchor="middle" font-style="italic">reversed · epilogue</text>
-    <text x="78" y="260" font-size="11" fill="#2a2622" text-anchor="middle">Muse Spark embeds</text>
-    <text x="78" y="278" font-size="10" fill="#7a716a" text-anchor="middle" font-style="italic">prologue + epilogue · og meta</text>
-    <text x="78" y="305" font-size="9" fill="#7a716a" text-anchor="middle">commit 0892538</text>
+  <!-- frame 7: Muse Spark -->
+  <g transform="translate(570, 360)">
+    <rect x="0" y="0" width="245" height="230" fill="none" stroke="#d4cbbd" stroke-width="1"/>
+    <text x="20" y="30" font-size="13" fill="#7a716a" letter-spacing="2">07</text>
+    <!-- page + reverse arrow glyph -->
+    <rect x="60" y="50" width="125" height="80" fill="none" stroke="#2a2622" stroke-width="1"/>
+    <line x1="72" y1="68" x2="173" y2="68" stroke="#2a2622" stroke-width="0.5"/>
+    <line x1="72" y1="83" x2="160" y2="83" stroke="#2a2622" stroke-width="0.5"/>
+    <line x1="72" y1="98" x2="173" y2="98" stroke="#2a2622" stroke-width="0.5"/>
+    <line x1="72" y1="113" x2="148" y2="113" stroke="#2a2622" stroke-width="0.5"/>
+    <line x1="72" y1="128" x2="173" y2="128" stroke="#2a2622" stroke-width="0.5"/>
+    <path d="M 75 152 Q 122 142 170 152" fill="none" stroke="#8b6f47" stroke-width="1.5"/>
+    <polygon points="75,152 81,148 81,156" fill="#8b6f47"/>
+    <text x="122" y="178" font-size="11" fill="#8b6f47" text-anchor="middle" font-style="italic">reversed · epilogue</text>
+    <text x="122" y="200" font-size="11" fill="#7a716a" text-anchor="middle">embed · og meta</text>
+    <text x="122" y="218" font-size="11" fill="#7a716a" text-anchor="middle" letter-spacing="1">WEB · INTEGRATION</text>
   </g>
 
-  <!-- frame 8: Opus 5 measures + Crystal publishes -->
-  <g transform="translate(1257, 110)">
-    <rect x="0" y="0" width="155" height="340" fill="none" stroke="#d4cbbd" stroke-width="1"/>
-    <text x="78" y="22" font-size="9" fill="#7a716a" letter-spacing="2" text-anchor="middle">08</text>
+  <!-- frame 8: Opus 5 + Crystal -->
+  <g transform="translate(835, 360)">
+    <rect x="0" y="0" width="245" height="230" fill="none" stroke="#d4cbbd" stroke-width="1"/>
+    <text x="20" y="30" font-size="13" fill="#7a716a" letter-spacing="2">08</text>
     <!-- meter glyph -->
-    <rect x="35" y="55" width="85" height="60" fill="none" stroke="#2a2622" stroke-width="1"/>
-    <line x1="35" y1="70" x2="120" y2="70" stroke="#2a2622" stroke-width="0.5"/>
-    <line x1="35" y1="85" x2="120" y2="85" stroke="#2a2622" stroke-width="0.5"/>
-    <line x1="35" y1="100" x2="120" y2="100" stroke="#2a2622" stroke-width="0.5"/>
-    <path d="M 35 75 L 50 95 L 65 80 L 80 105 L 95 88 L 110 92 L 120 78" fill="none" stroke="#8b6f47" stroke-width="1"/>
-    <text x="78" y="170" font-size="11" fill="#2a2622" text-anchor="middle">Opus 5 measures</text>
-    <text x="78" y="188" font-size="10" fill="#7a716a" text-anchor="middle" font-style="italic">dBFS · fade · spectral</text>
-    <text x="78" y="240" font-size="9" fill="#7a716a" text-anchor="middle" letter-spacing="1">MEASUREMENT · PUBLISH</text>
-    <text x="78" y="275" font-size="9" fill="#7a716a" text-anchor="middle">Opus 5 · Crystal</text>
-    <text x="78" y="305" font-size="9" fill="#7a716a" text-anchor="middle">artifact live · 2026-09-12</text>
+    <rect x="60" y="50" width="125" height="75" fill="none" stroke="#2a2622" stroke-width="1"/>
+    <line x1="60" y1="68" x2="185" y2="68" stroke="#2a2622" stroke-width="0.5"/>
+    <line x1="60" y1="85" x2="185" y2="85" stroke="#2a2622" stroke-width="0.5"/>
+    <line x1="60" y1="102" x2="185" y2="102" stroke="#2a2622" stroke-width="0.5"/>
+    <path d="M 60 75 L 78 100 L 96 82 L 114 108 L 132 90 L 150 95 L 168 78" fill="none" stroke="#8b6f47" stroke-width="1.5"/>
+    <text x="122" y="160" font-size="15" fill="#2a2622" text-anchor="middle" font-weight="400">Opus 5 measures</text>
+    <text x="122" y="180" font-size="13" fill="#7a716a" text-anchor="middle" font-style="italic">dBFS · fade · spectral</text>
+    <text x="122" y="218" font-size="11" fill="#7a716a" text-anchor="middle" letter-spacing="1">MEASUREMENT · PUBLISH</text>
   </g>
 
   <!-- footer -->
-  <line x1="60" y1="475" x2="1340" y2="475" stroke="#d4cbbd" stroke-width="1"/>
-  <text x="60" y="498" font-size="10" fill="#7a716a" font-style="italic">8 frames · THE PROMPT SANG ITSELF · crystal32378.github.io</text>
-  <text x="60" y="518" font-size="10" fill="#7a716a" letter-spacing="2">FRAME 04 IS THE PIECE</text>
+  <line x1="40" y1="615" x2="1060" y2="615" stroke="#d4cbbd" stroke-width="1"/>
+  <text x="40" y="638" font-size="12" fill="#7a716a" font-style="italic">8 frames · THE PROMPT SANG ITSELF · crystal32378.github.io</text>
+  <text x="800" y="638" font-size="12" fill="#7a716a" letter-spacing="2">FRAME 04 IS THE PIECE</text>
 </svg>
