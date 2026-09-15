@@ -97,7 +97,7 @@
 <div class="audio-frame" id="audio-block">
   <div id="audio-frame-original">
     <div>▶ Listen — single take</div>
-    <iframe width="100%" height="380" src="https://www.youtube.com/embed/hBaoc9NjStc?cc_load_policy=0&cc_lang_pref=zh" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="THE PROMPT SANG ITSELF on YouTube" style="margin-top:12px;"></iframe>
+    <iframe width="100%" height="240" src="https://www.youtube.com/embed/hBaoc9NjStc?cc_load_policy=0&cc_lang_pref=zh" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="THE PROMPT SANG ITSELF on YouTube" style="margin-top:12px;"></iframe>
   </div>
 </div>
 
@@ -127,7 +127,7 @@
       <div style="display:flex;gap:10px;margin-top:8px;">
         <button id="btn-skip" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--fg);padding:5px 12px;cursor:pointer;">⏭ Skip</button>
         <button id="btn-bury" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;">⛔ Bury</button>
-        <button id="btn-share" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;">⌁ Share</button>
+        <button id="btn-share" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;">↗ Share</button>
         <button id="btn-close-station" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;margin-left:auto;">× Close</button>
       </div>
     </div>
@@ -149,7 +149,7 @@
       <div style="display:flex;gap:10px;margin-top:8px;">
         <button id="s4-skip" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--fg);padding:5px 12px;cursor:pointer;">⏭ Skip</button>
         <button id="s4-bury" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;">⛔ Bury</button>
-        <button id="s4-share" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;">⌁ Share</button>
+        <button id="s4-share" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;">↗ Share</button>
         <button id="s4-close" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;margin-left:auto;">× Close</button>
       </div>
     </div>
@@ -175,7 +175,7 @@
       <div style="display:flex;gap:10px;margin-top:8px;">
         <button id="s5-skip" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--fg);padding:5px 12px;cursor:pointer;">⏭ Skip</button>
         <button id="s5-bury" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;">⛔ Bury</button>
-        <button id="s5-share" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;">⌁ Share</button>
+        <button id="s5-share" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;">↗ Share</button>
         <button id="s5-close" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;margin-left:auto;">× Close</button>
       </div>
     </div>
@@ -1126,13 +1126,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function api() { return window.__stations || {}; }
 
-  // Small ⌁ button after each station button (copies ?station=N link)
+  // Small ↗ button after each station button (copies ?station=N link)
   document.querySelectorAll('.station-btn').forEach(function(btn) {
     var s = document.createElement('button');
     s.className = 'station-share';
     s.title = 'Copy link to Station ' + btn.dataset.station;
-    s.textContent = '⌁';
-    s.style.cssText = 'font-family:inherit;font-size:13px;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 10px;cursor:pointer;';
+    s.textContent = '↗';
+    s.style.cssText = 'font-family:inherit,"Apple Symbols","Segoe UI Symbol","Noto Sans Symbols 2","Noto Sans Symbols",sans-serif;font-size:13px;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 10px;cursor:pointer;';
     s.addEventListener('click', function(ev) {
       ev.stopPropagation();
       copyLink(stationLink(btn.dataset.station), s);
@@ -1140,7 +1140,7 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.insertAdjacentElement('afterend', s);
   });
 
-  // ⌁ Share inside each pane (copies current-track link).
+  // ↗ Share inside each pane (copies current-track link).
   // The Share buttons already exist in HTML (#btn-share, #s4-share,
   // #s5-share); wire them here so all logic lives in one place.
   function wirePaneShare(btnId, getLink) {
