@@ -1126,20 +1126,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function api() { return window.__stations || {}; }
 
-  // Small ↗ button after each station button (copies ?station=N link)
-  document.querySelectorAll('.station-btn').forEach(function(btn) {
-    var s = document.createElement('button');
-    s.className = 'station-share';
-    s.title = 'Copy link to Station ' + btn.dataset.station;
-    s.textContent = '↗';
-    s.style.cssText = 'font-family:inherit,"Apple Symbols","Segoe UI Symbol","Noto Sans Symbols 2","Noto Sans Symbols",sans-serif;font-size:13px;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 10px;cursor:pointer;';
-    s.addEventListener('click', function(ev) {
-      ev.stopPropagation();
-      copyLink(stationLink(btn.dataset.station), s);
-    });
-    btn.insertAdjacentElement('afterend', s);
-  });
-
   // ↗ Share inside each pane (copies current-track link).
   // The Share buttons already exist in HTML (#btn-share, #s4-share,
   // #s5-share); wire them here so all logic lives in one place.
