@@ -127,6 +127,7 @@
       <div style="display:flex;gap:10px;margin-top:8px;">
         <button id="btn-skip" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--fg);padding:5px 12px;cursor:pointer;">⏭ Skip</button>
         <button id="btn-bury" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;">⛔ Bury</button>
+        <button id="btn-share" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;">⌁ Share</button>
         <button id="btn-close-station" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;margin-left:auto;">× Close</button>
       </div>
     </div>
@@ -148,6 +149,7 @@
       <div style="display:flex;gap:10px;margin-top:8px;">
         <button id="s4-skip" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--fg);padding:5px 12px;cursor:pointer;">⏭ Skip</button>
         <button id="s4-bury" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;">⛔ Bury</button>
+        <button id="s4-share" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;">⌁ Share</button>
         <button id="s4-close" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;margin-left:auto;">× Close</button>
       </div>
     </div>
@@ -173,6 +175,7 @@
       <div style="display:flex;gap:10px;margin-top:8px;">
         <button id="s5-skip" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--fg);padding:5px 12px;cursor:pointer;">⏭ Skip</button>
         <button id="s5-bury" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;">⛔ Bury</button>
+        <button id="s5-share" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;">⌁ Share</button>
         <button id="s5-close" style="font-family:inherit;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 12px;cursor:pointer;margin-left:auto;">× Close</button>
       </div>
     </div>
@@ -428,6 +431,7 @@
   catch(e) { buried = new Set(); }
 
   let idx = 0;
+  let currentId = null;
   let player = null;
 
   function buryKey(s) { return s.artist + '|' + s.track; }
@@ -494,7 +498,7 @@
     }
   }
 
-  function openStation(id) {
+  function openStation(id, startIdx) {
     const cfg = STATIONS[id];
     if (!cfg) return;
     // Close local-audio panes if open (only one station visible at a time)
@@ -507,9 +511,11 @@
     const s5Audio = document.getElementById('s5-audio');
     if (s5Audio) s5Audio.pause();
     STATION = cfg.data;
+    currentId = id;
     idx = 0;
     document.getElementById('station-name').textContent = cfg.name;
     document.getElementById('station-pane').style.display = 'block';
+    if (startIdx && startIdx >= 1 && startIdx <= STATION.length) idx = startIdx;
     initPlayer();
   }
 
@@ -537,6 +543,11 @@
     advance();
   });
   document.getElementById('btn-close-station').addEventListener('click', closeStation);
+
+  // Timelinks API (exposed for deep links + share buttons)
+  window.__stations = window.__stations || {};
+  window.__stations.open = openStation;
+  window.__stations.current123 = function() { return { station: currentId, track: idx }; };
 })();
 </script>
 
@@ -722,7 +733,7 @@
     audio.play().catch(() => {});
   }
 
-  function openStation4() {
+  function openStation4(startIdx) {
     // Close station1/2/3 and station5 panes if open
     document.getElementById('station-pane').style.display = 'none';
     document.getElementById('station5-pane').style.display = 'none';
@@ -730,7 +741,7 @@
     if (station5Audio) station5Audio.pause();
     const pane = document.getElementById('station4-pane');
     pane.style.display = 'block';
-    idx = 0;
+    idx = (startIdx && startIdx >= 1 && startIdx <= STATION4.length) ? startIdx - 1 : 0;
     render();
     audio.play().catch(() => {});
   }
@@ -756,6 +767,11 @@
   document.getElementById('s4-bury').addEventListener('click', buryCurrent);
   document.getElementById('s4-close').addEventListener('click', closeStation4);
   audio.addEventListener('ended', advance);
+
+  // Timelinks API
+  window.__stations = window.__stations || {};
+  window.__stations.open4 = openStation4;
+  window.__stations.current4 = function() { return idx + 1; };
 })();
 </script>
 
@@ -890,7 +906,7 @@
     audio.play().catch(() => {});
   }
 
-  function openStation5() {
+  function openStation5(startIdx) {
     // Close station1/2/3 pane and station4 pane if open
     document.getElementById('station-pane').style.display = 'none';
     document.getElementById('station4-pane').style.display = 'none';
@@ -898,7 +914,7 @@
     if (station4Audio) station4Audio.pause();
     const pane = document.getElementById('station5-pane');
     pane.style.display = 'block';
-    idx = 0;
+    idx = (startIdx && startIdx >= 1 && startIdx <= STATION5.length) ? startIdx - 1 : 0;
     render();
     audio.play().catch(() => {});
   }
@@ -924,6 +940,11 @@
   document.getElementById('s5-bury').addEventListener('click', buryCurrent);
   document.getElementById('s5-close').addEventListener('click', closeStation5);
   audio.addEventListener('ended', advance);
+
+  // Timelinks API
+  window.__stations = window.__stations || {};
+  window.__stations.open5 = openStation5;
+  window.__stations.current5 = function() { return idx + 1; };
 })();
 </script>
 
@@ -1068,6 +1089,101 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+</script>
+
+<script>
+// Timelinks — ?station=N[&track=M] deep links + share buttons.
+// Pure frontend, no backend. Station 1-3: track = 1-based position in list.
+// Station 4/5: track = 1-based position in local track list.
+(function() {
+  function baseUrl() { return location.origin + location.pathname; }
+  function stationLink(s, t) {
+    return baseUrl() + '?station=' + s + (t ? '&track=' + t : '');
+  }
+  function flash(btn, ok) {
+    var orig = btn.textContent;
+    btn.textContent = ok ? 'Copied ✓' : 'Copy failed';
+    setTimeout(function() { btn.textContent = orig; }, 1200);
+  }
+  function copyLink(url, btn) {
+    function done(ok) { flash(btn, ok); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function() { done(true); }, function() { done(false); });
+    } else {
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = url;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        done(!!ok);
+      } catch(e) { done(false); }
+    }
+  }
+
+  function api() { return window.__stations || {}; }
+
+  // Small ⌁ button after each station button (copies ?station=N link)
+  document.querySelectorAll('.station-btn').forEach(function(btn) {
+    var s = document.createElement('button');
+    s.className = 'station-share';
+    s.title = 'Copy link to Station ' + btn.dataset.station;
+    s.textContent = '⌁';
+    s.style.cssText = 'font-family:inherit;font-size:13px;background:transparent;border:1px solid var(--rule);color:var(--muted);padding:5px 10px;cursor:pointer;';
+    s.addEventListener('click', function(ev) {
+      ev.stopPropagation();
+      copyLink(stationLink(btn.dataset.station), s);
+    });
+    btn.insertAdjacentElement('afterend', s);
+  });
+
+  // ⌁ Share inside each pane (copies current-track link).
+  // The Share buttons already exist in HTML (#btn-share, #s4-share,
+  // #s5-share); wire them here so all logic lives in one place.
+  function wirePaneShare(btnId, getLink) {
+    var b = document.getElementById(btnId);
+    if (!b) return;
+    b.addEventListener('click', function() { copyLink(getLink(), b); });
+  }
+  wirePaneShare('btn-share', function() {
+    var c = api().current123 ? api().current123() : {};
+    if (!c.station) return stationLink('1');
+    return stationLink(c.station, c.track || '');
+  });
+  wirePaneShare('s4-share', function() {
+    var t = api().current4 ? api().current4() : 1;
+    return stationLink('4', t);
+  });
+  wirePaneShare('s5-share', function() {
+    var t = api().current5 ? api().current5() : 1;
+    return stationLink('5', t);
+  });
+
+  // Route ?station=N[&track=M] on page load
+  function route() {
+    var q;
+    try { q = new URLSearchParams(location.search); }
+    catch(e) { return; }
+    var st = q.get('station');
+    if (!st || !/^[1-5]$/.test(st)) return;
+    var tr = parseInt(q.get('track') || '0', 10);
+    if (isNaN(tr) || tr < 0) tr = 0;
+    var det = document.querySelector('details');
+    if (det && !det.open) det.open = true;
+    var a = api();
+    var paneId = 'station-pane';
+    if (st === '4') { if (a.open4) a.open4(tr); paneId = 'station4-pane'; }
+    else if (st === '5') { if (a.open5) a.open5(tr); paneId = 'station5-pane'; }
+    else if (a.open) a.open(st, tr);
+    var pane = document.getElementById(paneId);
+    if (pane) setTimeout(function() { pane.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 300);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', route);
+  else route();
+})();
 </script>
 
 </body>
