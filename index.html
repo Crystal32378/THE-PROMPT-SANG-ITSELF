@@ -81,7 +81,9 @@
   .radio { margin: 28px 0 0; }
   .radio-label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
   .radio-hint { font-size: 14px; color: var(--muted); font-style: italic; margin-bottom: 16px; }
-  #radio-svg { display: block; width: 100%; height: auto; }
+  #radio-svg { display: block; width: 100%; height: auto;
+    margin-left: calc(50% - 50vw + 16px); margin-right: calc(50% - 50vw + 16px);
+    max-width: calc(100vw - 32px); }
   #wave-top, #wave-bottom { fill: none; stroke: var(--rule); stroke-width: 1; stroke-linejoin: round; }
   #wave-top-played, #wave-bottom-played { fill: none; stroke: var(--accent); stroke-width: 1.1; stroke-linejoin: round; filter: drop-shadow(0 0 3px rgba(139,111,71,0.45)); }
   #playhead { stroke: var(--accent); stroke-width: 1; }
@@ -980,39 +982,12 @@
   <p class="radio-label">The single take</p>
   <p class="radio-hint">Three lines in the score do not match the recording. Find them.</p>
 
-  <svg id="radio-svg" viewBox="0 0 640 200" role="img" aria-labelledby="radio-title radio-desc">
+  <svg id="radio-svg" viewBox="0 0 1100 430" role="img" aria-labelledby="radio-title radio-desc">
     <title id="radio-title">The single take, played on a gramophone</title>
-    <desc id="radio-desc">A line drawing of a 1920s gramophone whose horn emits the waveform of the original recording.
+    <desc id="radio-desc">An engraved 1920s gramophone whose horn emits the waveform of the original recording.
       The waveform can be dragged to re-listen to any moment. Three lines the model sang differently are marked on the score below.</desc>
 
-    <g id="gramophone" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-<g id="gram-horn">
-    <!-- bell: two tangent lines from the throat to the rim, bowed outward for flare -->
-    <path d="M 147.9 64.8 Q 153.9 82.6 150 101 Q 170.1 91.7 192.2 92.1" />
-    <!-- rim of the mouth -->
-    <ellipse cx="190" cy="56" rx="44" ry="35" transform="rotate(-28 190 56)" />
-    <!-- interior of the cone, converging toward the throat -->
-    <ellipse cx="184" cy="62.7" rx="29" ry="23.1" transform="rotate(-28 184 62.7)" />
-    <ellipse cx="177.4" cy="70.2" rx="15" ry="11.9" transform="rotate(-28 177.4 70.2)" />
-  </g>
-
-  <g id="gram-neck">
-    <path d="M 143 105 C 130 125 112 137 90 141" />
-    <path d="M 158 99 C 145 121 124 135 99 143" />
-  </g>
-
-  <g id="gram-base">
-    <ellipse cx="78" cy="142" rx="48" ry="11" />
-    <path d="M 32 143 L 124 143 L 132 172 L 24 172 Z" />
-    <path d="M 28 158 L 128 158" />
-    <path d="M 114 135 L 81 133" />
-    <circle cx="78" cy="133" r="3.2" />
-    <circle cx="127" cy="155" r="3.4" />
-    <path d="M 130 154 L 151 149" />
-    <path d="M 151 149 L 151 142" />
-    <circle cx="151" cy="139" r="4.4" />
-  </g>
-    </g>
+    <image id="gramophone" href="assets/gramophone.png" x="0" y="0" width="380" height="420" preserveAspectRatio="xMinYMin meet" />
 
     <path id="wave-top" />
     <path id="wave-bottom" />
@@ -1020,10 +995,10 @@
       <path id="wave-top-played" />
       <path id="wave-bottom-played" />
     </g>
-    <clipPath id="wave-clip"><rect id="wave-clip-rect" x="0" y="0" width="0" height="200" /></clipPath>
-    <line id="playhead" x1="236" y1="8" x2="236" y2="74" />
+    <clipPath id="wave-clip"><rect id="wave-clip-rect" x="0" y="0" width="0" height="430" /></clipPath>
+    <line id="playhead" x1="380" y1="178" x2="380" y2="250" />
     <g id="found-marks"></g>
-    <rect id="scrub" x="236" y="0" width="400" height="200" tabindex="0" role="slider"
+    <rect id="scrub" x="380" y="0" width="700" height="430" tabindex="0" role="slider"
           aria-label="Position in the recording" aria-valuemin="0" aria-valuemax="126" aria-valuenow="0" />
   </svg>
 
@@ -1256,7 +1231,7 @@ document.addEventListener('DOMContentLoaded', function() {
    Measurements: 2026-10-27, decoded from the original single take (126.32 s).
    Times below are seconds into the recording. */
 (function () {
-  var WAVE = { x0: 236, x1: 636, y: 41, amp: 26 };
+  var WAVE = { x0: 380, x1: 1080, y: 214, amp: 26 };
   var TARGETS = [
     { id: 't1', line: 'ly-2',  wins: [[12.0, 17.0], [19.0, 25.0]], note: 'the voice said “stained”' },
     { id: 't2', line: 'ly-11', wins: [[78.0, 84.5]],             note: 'the voice garbled “single notes”' },
