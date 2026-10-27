@@ -81,9 +81,12 @@
   .radio { margin: 28px 0 0; }
   .radio-label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
   .radio-hint { font-size: 14px; color: var(--muted); font-style: italic; margin-bottom: 16px; }
-  #radio-svg { display: block; width: 100%; height: auto;
-    margin-left: calc(50% - 50vw + 16px); margin-right: calc(50% - 50vw + 16px);
-    max-width: calc(100vw - 32px); }
+  .radio figure {
+    margin-left: calc(50% - 50vw + 16px);
+    margin-right: calc(50% - 50vw + 16px);
+    max-width: calc(100vw - 32px);
+  }
+  #radio-svg { display: block; width: 100%; height: auto; }
   #wave-top, #wave-bottom { fill: none; stroke: var(--rule); stroke-width: 1; stroke-linejoin: round; }
   #wave-top-played, #wave-bottom-played { fill: none; stroke: var(--accent); stroke-width: 1.1; stroke-linejoin: round; filter: drop-shadow(0 0 3px rgba(139,111,71,0.45)); }
   #playhead { stroke: var(--accent); stroke-width: 1; }
@@ -982,12 +985,13 @@
   <p class="radio-label">The single take</p>
   <p class="radio-hint">Three lines in the score do not match the recording. Find them.</p>
 
+  <figure>
   <svg id="radio-svg" viewBox="0 0 1100 430" role="img" aria-labelledby="radio-title radio-desc">
     <title id="radio-title">The single take, played on a gramophone</title>
     <desc id="radio-desc">An engraved 1920s gramophone whose horn emits the waveform of the original recording.
       The waveform can be dragged to re-listen to any moment. Three lines the model sang differently are marked on the score below.</desc>
 
-    <image id="gramophone" href="assets/gramophone.png" x="0" y="0" width="380" height="420" preserveAspectRatio="xMinYMin meet" />
+    <image id="gramophone" href="assets/gramophone.png" x="12" y="12" width="366" height="405" preserveAspectRatio="xMinYMin meet" />
 
     <path id="wave-top" />
     <path id="wave-bottom" />
@@ -1001,6 +1005,7 @@
     <rect id="scrub" x="380" y="0" width="700" height="430" tabindex="0" role="slider"
           aria-label="Position in the recording" aria-valuemin="0" aria-valuemax="126" aria-valuenow="0" />
   </svg>
+  </figure>
 
   <div class="radio-bar">
     <button id="radio-play" type="button">&#9654; Play</button>
@@ -1275,6 +1280,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var t = audio.currentTime || 0, x = xFor(t);
     head.setAttribute('x1', x.toFixed(1));
     head.setAttribute('x2', x.toFixed(1));
+    /* No playhead before the needle drops: at t=0 it would read as a stray
+       measuring line at the start of the waveform. */
+    head.style.opacity = t > 0.05 ? '1' : '0';
     clipR.setAttribute('width', Math.max(0, x - WAVE.x0).toFixed(1));
     scrub.setAttribute('aria-valuenow', Math.round(t));
     scrub.setAttribute('aria-valuetext', Math.floor(t / 60) + ':' + String(Math.floor(t % 60)).padStart(2, '0'));
