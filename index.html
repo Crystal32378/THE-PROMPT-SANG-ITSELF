@@ -986,21 +986,32 @@
       The waveform can be dragged to re-listen to any moment. Three lines the model sang differently are marked on the score below.</desc>
 
     <g id="gramophone" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M 178 16 C 152 28 126 58 106 90 C 98 104 94 112 92 120 L 108 125 C 112 113 118 99 128 85 C 144 61 164 39 182 27" />
-      <ellipse cx="202" cy="41" rx="30" ry="24" transform="rotate(-30 202 41)" />
-      <ellipse cx="196" cy="45" rx="22" ry="17" transform="rotate(-30 196 45)" />
-      <ellipse cx="192" cy="48" rx="14" ry="10.5" transform="rotate(-30 192 48)" />
-      <path d="M 93 121 C 89 130 83 136 76 140" />
-      <path d="M 108 125 C 104 134 98 140 90 143" />
-      <ellipse cx="76" cy="141" rx="48" ry="11" />
-      <path d="M 31 142 L 121 142 L 129 171 L 23 171 Z" />
-      <path d="M 27 157 L 125 157" />
-      <path d="M 112 134 L 79 132" />
-      <circle cx="76" cy="132" r="3.2" />
-      <circle cx="126" cy="154" r="3.4" />
-      <path d="M 129 153 L 151 147" />
-      <path d="M 151 147 L 151 140" />
-      <circle cx="151" cy="137" r="4.4" />
+<g id="gram-horn">
+    <!-- bell: two tangent lines from the throat to the rim, bowed outward for flare -->
+    <path d="M 147.9 64.8 Q 153.9 82.6 150 101 Q 170.1 91.7 192.2 92.1" />
+    <!-- rim of the mouth -->
+    <ellipse cx="190" cy="56" rx="44" ry="35" transform="rotate(-28 190 56)" />
+    <!-- interior of the cone, converging toward the throat -->
+    <ellipse cx="184" cy="62.7" rx="29" ry="23.1" transform="rotate(-28 184 62.7)" />
+    <ellipse cx="177.4" cy="70.2" rx="15" ry="11.9" transform="rotate(-28 177.4 70.2)" />
+  </g>
+
+  <g id="gram-neck">
+    <path d="M 143 105 C 130 125 112 137 90 141" />
+    <path d="M 158 99 C 145 121 124 135 99 143" />
+  </g>
+
+  <g id="gram-base">
+    <ellipse cx="78" cy="142" rx="48" ry="11" />
+    <path d="M 32 143 L 124 143 L 132 172 L 24 172 Z" />
+    <path d="M 28 158 L 128 158" />
+    <path d="M 114 135 L 81 133" />
+    <circle cx="78" cy="133" r="3.2" />
+    <circle cx="127" cy="155" r="3.4" />
+    <path d="M 130 154 L 151 149" />
+    <path d="M 151 149 L 151 142" />
+    <circle cx="151" cy="139" r="4.4" />
+  </g>
     </g>
 
     <path id="wave-top" />
