@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" width="240" height="200"
+     fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+     role="img" aria-labelledby="gram-title gram-desc">
+  <title id="gram-title">A 1920s acoustic horn gramophone, drawn as a line diagram</title>
+  <desc id="gram-desc">A side-elevation line drawing of a hand-cranked gramophone: a large flared brass horn
+    opening to the upper right, a curved neck descending to a wooden turntable base with a crank handle.
+    The mouth of the horn is empty — the digital waveform is drawn live from its rim.</desc>
+
+  <g id="gram-horn">
+    <!-- bell: from the rim down to the throat -->
+    <path d="M 178 16 C 152 28 126 58 106 90 C 98 104 94 112 92 120 L 108 125 C 112 113 118 99 128 85 C 144 61 164 39 182 27" />
+    <!-- rim of the mouth -->
+    <ellipse cx="202" cy="41" rx="30" ry="24" transform="rotate(-30 202 41)" />
+    <!-- interior cone, opening back toward the throat -->
+    <ellipse cx="196" cy="45" rx="22" ry="17" transform="rotate(-30 196 45)" />
+    <ellipse cx="192" cy="48" rx="14" ry="10.5" transform="rotate(-30 192 48)" />
+  </g>
+
+  <g id="gram-neck">
+    <path d="M 93 121 C 89 130 83 136 76 140" />
+    <path d="M 108 125 C 104 134 98 140 90 143" />
+  </g>
+
+  <g id="gram-base">
+    <!-- turntable -->
+    <ellipse cx="76" cy="141" rx="48" ry="11" />
+    <!-- plinth -->
+    <path d="M 31 142 L 121 142 L 129 171 L 23 171 Z" />
+    <path d="M 27 157 L 125 157" />
+    <!-- soundbox arm resting over the disc -->
+    <path d="M 112 134 L 79 132" />
+    <circle cx="76" cy="132" r="3.2" />
+    <!-- crank -->
+    <circle cx="126" cy="154" r="3.4" />
+    <path d="M 129 153 L 151 147" />
+    <path d="M 151 147 L 151 140" />
+    <circle cx="151" cy="137" r="4.4" />
+  </g>
+</svg>

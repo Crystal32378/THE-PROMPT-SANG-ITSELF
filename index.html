@@ -76,6 +76,24 @@
     margin: 0 auto;
     display: block;
   }
+
+  /* ---- The Radio: the single take, and the three lines it sang wrong ---- */
+  .radio { margin: 28px 0 0; }
+  .radio-label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .radio-hint { font-size: 14px; color: var(--muted); font-style: italic; margin-bottom: 16px; }
+  #radio-svg { display: block; width: 100%; height: auto; }
+  #wave-top, #wave-bottom { fill: none; stroke: var(--rule); stroke-width: 1; stroke-linejoin: round; }
+  #wave-top-played, #wave-bottom-played { fill: none; stroke: var(--accent); stroke-width: 1.1; stroke-linejoin: round; filter: drop-shadow(0 0 3px rgba(139,111,71,0.45)); }
+  #playhead { stroke: var(--accent); stroke-width: 1; }
+  #scrub { fill: transparent; cursor: ew-resize; }
+  #scrub:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+  .found-mark { fill: none; stroke: var(--accent); stroke-width: 1; }
+  .radio-bar { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-top: 10px; }
+  .radio-bar button { font-family: inherit; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; background: transparent; border: 1px solid var(--rule); color: var(--fg); padding: 5px 12px; cursor: pointer; }
+  .radio-bar button:hover { border-color: var(--accent); color: var(--accent); }
+  #radio-count { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+  #radio-found { font-size: 13px; color: var(--accent); font-style: italic; }
+  .lyric.found { color: var(--accent); background: rgba(139,111,71,0.09); }
 </style>
 </head>
 <body>
@@ -958,10 +976,59 @@
 
 <p><em>The structure directions supplied in the lyrics field:</em></p>
 
+<section class="radio" id="radio">
+  <p class="radio-label">The single take</p>
+  <p class="radio-hint">Three lines in the score do not match the recording. Find them.</p>
+
+  <svg id="radio-svg" viewBox="0 0 640 200" role="img" aria-labelledby="radio-title radio-desc">
+    <title id="radio-title">The single take, played on a gramophone</title>
+    <desc id="radio-desc">A line drawing of a 1920s gramophone whose horn emits the waveform of the original recording.
+      The waveform can be dragged to re-listen to any moment. Three lines the model sang differently are marked on the score below.</desc>
+
+    <g id="gramophone" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 178 16 C 152 28 126 58 106 90 C 98 104 94 112 92 120 L 108 125 C 112 113 118 99 128 85 C 144 61 164 39 182 27" />
+      <ellipse cx="202" cy="41" rx="30" ry="24" transform="rotate(-30 202 41)" />
+      <ellipse cx="196" cy="45" rx="22" ry="17" transform="rotate(-30 196 45)" />
+      <ellipse cx="192" cy="48" rx="14" ry="10.5" transform="rotate(-30 192 48)" />
+      <path d="M 93 121 C 89 130 83 136 76 140" />
+      <path d="M 108 125 C 104 134 98 140 90 143" />
+      <ellipse cx="76" cy="141" rx="48" ry="11" />
+      <path d="M 31 142 L 121 142 L 129 171 L 23 171 Z" />
+      <path d="M 27 157 L 125 157" />
+      <path d="M 112 134 L 79 132" />
+      <circle cx="76" cy="132" r="3.2" />
+      <circle cx="126" cy="154" r="3.4" />
+      <path d="M 129 153 L 151 147" />
+      <path d="M 151 147 L 151 140" />
+      <circle cx="151" cy="137" r="4.4" />
+    </g>
+
+    <path id="wave-top" />
+    <path id="wave-bottom" />
+    <g clip-path="url(#wave-clip)">
+      <path id="wave-top-played" />
+      <path id="wave-bottom-played" />
+    </g>
+    <clipPath id="wave-clip"><rect id="wave-clip-rect" x="0" y="0" width="0" height="200" /></clipPath>
+    <line id="playhead" x1="236" y1="8" x2="236" y2="74" />
+    <g id="found-marks"></g>
+    <rect id="scrub" x="236" y="0" width="400" height="200" tabindex="0" role="slider"
+          aria-label="Position in the recording" aria-valuemin="0" aria-valuemax="126" aria-valuenow="0" />
+  </svg>
+
+  <div class="radio-bar">
+    <button id="radio-play" type="button">&#9654; Play</button>
+    <span id="radio-count">0 / 3 found</span>
+    <span id="radio-found"></span>
+  </div>
+
+  <audio id="radio-audio" preload="metadata" src="assets/psi-original.m4a"></audio>
+</section>
+
 <pre>[Intro]
 <span class="highlight">(Sparse felt piano, single note, far away, room reverb)</span>
 
-(Soft attack on a low D, sustained with breath)
+<span class="lyric" id="ly-2">(Soft attack on a low D, sustained with breath)</span>
 
 (15 seconds of near silence, single high F floats in)
 
@@ -981,11 +1048,11 @@
 (Second piano voice enters, simple counter-melody)
 
 [Bridge]
-(Piano recedes to single notes, strings fade)
+<span class="lyric" id="ly-11">(Piano recedes to single notes, strings fade)</span>
 
 (Long silence, room tone only)
 
-(One last piano phrase, five notes rising to D5)
+<span class="lyric" id="ly-13">(One last piano phrase, five notes rising to D5)</span>
 
 (D5 sustains and hangs unresolved)
 
@@ -1169,6 +1236,190 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', route);
   else route();
+})();
+</script>
+
+
+<script>
+/* The Radio — gramophone, waveform, and the three lines the model sang differently.
+   Measurements: 2026-10-27, decoded from the original single take (126.32 s).
+   Times below are seconds into the recording. */
+(function () {
+  var WAVE = { x0: 236, x1: 636, y: 41, amp: 26 };
+  var TARGETS = [
+    { id: 't1', line: 'ly-2',  wins: [[12.0, 17.0], [19.0, 25.0]], note: 'the voice said “stained”' },
+    { id: 't2', line: 'ly-11', wins: [[78.0, 84.5]],             note: 'the voice garbled “single notes”' },
+    { id: 't3', line: 'ly-13', wins: [[85.0, 92.0]],             note: 'the voice added “and”' }
+  ];
+  var KEY = 'psi_radio_found';
+
+  var audio    = document.getElementById('radio-audio');
+  var svg      = document.getElementById('radio-svg');
+  var topP     = document.getElementById('wave-top');
+  var botP     = document.getElementById('wave-bottom');
+  var topC     = document.getElementById('wave-top-played');
+  var botC     = document.getElementById('wave-bottom-played');
+  var clipR    = document.getElementById('wave-clip-rect');
+  var head     = document.getElementById('playhead');
+  var scrub    = document.getElementById('scrub');
+  var marksG   = document.getElementById('found-marks');
+  var playBtn  = document.getElementById('radio-play');
+  var countEl  = document.getElementById('radio-count');
+  var foundEl  = document.getElementById('radio-found');
+  if (!audio || !svg || !scrub) return;
+
+  var dur = 0, peaks = null, found = {}, dwell = {}, lastT = 0, dragging = false;
+
+  try { found = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { found = {}; }
+
+  function xFor(t) { return WAVE.x0 + (dur ? (t / dur) : 0) * (WAVE.x1 - WAVE.x0); }
+  function tFor(x) { return dur ? ((x - WAVE.x0) / (WAVE.x1 - WAVE.x0)) * dur : 0; }
+
+  function buildPath(sign) {
+    var n = peaks.length, d = '', i, x, y;
+    for (i = 0; i < n; i++) {
+      x = WAVE.x0 + (i / (n - 1)) * (WAVE.x1 - WAVE.x0);
+      y = WAVE.y + sign * peaks[i] * WAVE.amp;
+      d += (i ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1);
+    }
+    return d;
+  }
+
+  function sync() {
+    var t = audio.currentTime || 0, x = xFor(t);
+    head.setAttribute('x1', x.toFixed(1));
+    head.setAttribute('x2', x.toFixed(1));
+    clipR.setAttribute('width', Math.max(0, x - WAVE.x0).toFixed(1));
+    scrub.setAttribute('aria-valuenow', Math.round(t));
+    scrub.setAttribute('aria-valuetext', Math.floor(t / 60) + ':' + String(Math.floor(t % 60)).padStart(2, '0'));
+  }
+
+  function renderFound() {
+    var n = 0, notes = [];
+    TARGETS.forEach(function (tg) {
+      if (found[tg.id]) { n++; notes.push(tg.note); }
+    });
+    countEl.textContent = n + ' / 3 found';
+    foundEl.textContent = notes.join('  ·  ');
+  }
+
+  function addMark(t) {
+    var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    c.setAttribute('class', 'found-mark');
+    c.setAttribute('cx', xFor(t).toFixed(1));
+    c.setAttribute('cy', WAVE.y);
+    c.setAttribute('r', 4);
+    marksG.appendChild(c);
+  }
+
+  function markFound(tg, t) {
+    if (found[tg.id]) return;
+    found[tg.id] = { t: t };
+    try { localStorage.setItem(KEY, JSON.stringify(found)); } catch (e) {}
+    var el = document.getElementById(tg.line);
+    if (el) el.classList.add('found');
+    addMark(t);
+    renderFound();
+  }
+
+  function inWins(tg, t) {
+    for (var i = 0; i < tg.wins.length; i++) {
+      if (t >= tg.wins[i][0] && t <= tg.wins[i][1]) return true;
+    }
+    return false;
+  }
+
+  /* ---------- load the real waveform ---------- */
+  fetch('assets/waveform-psi-original.json')
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      peaks = d.peaks;
+      dur = d.duration_s;
+      var dt = buildPath(-1), db = buildPath(1);
+      topP.setAttribute('d', dt); botP.setAttribute('d', db);
+      topC.setAttribute('d', dt); botC.setAttribute('d', db);
+      scrub.setAttribute('aria-valuemax', Math.round(dur));
+      TARGETS.forEach(function (tg) {
+        if (found[tg.id]) {
+          var el = document.getElementById(tg.line);
+          if (el) el.classList.add('found');
+          addMark(found[tg.id].t);
+        }
+      });
+      renderFound();
+      sync();
+    })
+    .catch(function () { /* the radio stays quiet; the page is unaffected */ });
+
+  audio.addEventListener('loadedmetadata', function () {
+    if (audio.duration && isFinite(audio.duration)) {
+      dur = audio.duration;
+      scrub.setAttribute('aria-valuemax', Math.round(dur));
+    }
+    sync();
+  });
+
+  /* ---------- play / pause ---------- */
+  playBtn.addEventListener('click', function () {
+    if (audio.paused) {
+      var pr = audio.play();
+      if (pr && pr.catch) pr.catch(function () {});
+      playBtn.innerHTML = '&#10073;&#10073; Pause';
+    } else {
+      audio.pause();
+      playBtn.innerHTML = '&#9654; Play';
+    }
+  });
+  audio.addEventListener('ended', function () { playBtn.innerHTML = '&#9654; Play'; });
+  audio.addEventListener('error', function () {
+    playBtn.innerHTML = 'audio unavailable';
+    playBtn.disabled = true;
+  });
+
+  /* ---------- scrub the waveform ---------- */
+  function seekTo(clientX) {
+    var r = scrub.getBoundingClientRect();
+    if (!r.width) return;
+    var f = (clientX - r.left) / r.width;
+    f = Math.max(0, Math.min(1, f));
+    audio.currentTime = f * dur;
+    sync();
+  }
+  scrub.addEventListener('pointerdown', function (e) {
+    dragging = true;
+    try { scrub.setPointerCapture(e.pointerId); } catch (err) {}
+    seekTo(e.clientX);
+    e.preventDefault();
+  });
+  scrub.addEventListener('pointermove', function (e) { if (dragging) seekTo(e.clientX); });
+  window.addEventListener('pointerup', function () { dragging = false; });
+  window.addEventListener('pointercancel', function () { dragging = false; });
+
+  scrub.addEventListener('keydown', function (e) {
+    var step = e.shiftKey ? 15 : 5;
+    if (e.key === 'ArrowLeft')  { audio.currentTime = Math.max(0, (audio.currentTime || 0) - step); e.preventDefault(); }
+    else if (e.key === 'ArrowRight') { audio.currentTime = Math.min(dur, (audio.currentTime || 0) + step); e.preventDefault(); }
+    else if (e.key === ' ' || e.key === 'Enter') { playBtn.click(); e.preventDefault(); }
+    else return;
+    sync();
+  });
+
+  /* ---------- the hunt ---------- */
+  audio.addEventListener('timeupdate', function () {
+    var t = audio.currentTime || 0;
+    var dt = t - lastT; lastT = t;
+    if (dt < 0 || dt > 0.6) dt = 0;          /* a seek is not listening */
+    if (!audio.paused && dt > 0) {
+      TARGETS.forEach(function (tg) {
+        if (found[tg.id]) return;
+        if (inWins(tg, t)) {
+          dwell[tg.id] = (dwell[tg.id] || 0) + dt;
+          if (dwell[tg.id] >= 0.8) markFound(tg, t);
+        }
+      });
+    }
+    sync();
+  });
 })();
 </script>
 
