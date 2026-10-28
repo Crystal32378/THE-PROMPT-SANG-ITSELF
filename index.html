@@ -90,8 +90,8 @@
   /* The waveform is a filled band, not a hairline: one min/max column per
      rendered pixel, so it stays readable on a phone and reads as a ribbon
      of sound gathering as it leaves the horn. */
-  #wave-band { fill: rgba(212,203,189,.42); stroke: var(--rule); stroke-width: 1; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
-  #wave-band-played { fill: rgba(139,111,71,.26); stroke: var(--accent); stroke-width: 1; stroke-linejoin: round; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 3px rgba(139,111,71,0.35)); }
+  #wave-band { fill: rgba(212,203,189,.52); stroke: var(--rule); stroke-width: 1.5; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  #wave-band-played { fill: rgba(139,111,71,.32); stroke: var(--accent); stroke-width: 1.6; stroke-linejoin: round; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 3px rgba(139,111,71,0.35)); }
   #playhead { stroke: var(--accent); stroke-width: 1; vector-effect: non-scaling-stroke; }
   #scrub { fill: transparent; cursor: ew-resize; }
   #scrub:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
@@ -1243,7 +1243,7 @@ document.addEventListener('DOMContentLoaded', function() {
    Times below are seconds into the recording. */
 (function () {
   var VIEW_W = 576;
-  var WAVE = { x0: 196, x1: 576, y: 128, amp: 15 };
+  var WAVE = { x0: 196, x1: 576, y: 128, amp: 19 };
   var TARGETS = [
     { id: 't1', line: 'ly-2',  wins: [[12.0, 17.0], [19.0, 25.0]], note: 'the voice said “stained”' },
     { id: 't2', line: 'ly-11', wins: [[78.0, 84.5]],             note: 'the voice garbled “single notes”' },
