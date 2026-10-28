@@ -1166,9 +1166,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   function copyLink(url, btn) {
     function done(ok) { flash(btn, ok); }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(url).then(function() { done(true); }, function() { done(false); });
-    } else {
+    function fallback() {
       try {
         var ta = document.createElement('textarea');
         ta.value = url;
@@ -1180,6 +1178,13 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.removeChild(ta);
         done(!!ok);
       } catch(e) { done(false); }
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      /* writeText rejects when the document is not focused — Firefox does this
+         readily. Fall through to the textarea copy instead of giving up. */
+      navigator.clipboard.writeText(url).then(function() { done(true); }, fallback);
+    } else {
+      fallback();
     }
   }
 
