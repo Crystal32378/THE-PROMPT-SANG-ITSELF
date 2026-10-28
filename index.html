@@ -1390,9 +1390,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   audio.addEventListener('ended', function () { playBtn.innerHTML = '&#9654; Play'; });
+  /* A transient CDN hiccup must not kill the radio for good: retry the
+     source with a cache-busted URL before giving up, and leave the button
+     enabled afterwards so a manual click can try again. */
+  var audioTries = 0;
   audio.addEventListener('error', function () {
+    if (audioTries++ < 2) {
+      audio.src = 'assets/psi-original.m4a?try=' + audioTries;
+      audio.load();
+      playBtn.innerHTML = '&#9654; Play';
+      playBtn.disabled = false;
+      return;
+    }
     playBtn.innerHTML = 'audio unavailable';
-    playBtn.disabled = true;
+    playBtn.disabled = false;
   });
 
   /* ---------- scrub the waveform ---------- */
